@@ -29,6 +29,7 @@ dependencies:
   pdf:
   printing:
   flutter_vector_icons:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

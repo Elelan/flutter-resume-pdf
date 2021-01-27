@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       body: PdfPreview(
-        useActions: false,
+        useActions: true,
         build: generateResume,
       ),
     );

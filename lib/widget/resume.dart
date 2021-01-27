@@ -20,6 +20,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meta/meta.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -54,23 +55,12 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                     child: pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: <pw.Widget>[
-                      pw.Text("Elelan",
-                          textScaleFactor: 2,
-                          style: pw.Theme.of(context).defaultTextStyle.copyWith(
-                                fontWeight: pw.FontWeight.bold,
-                                fontStyle: pw.FontStyle.italic,
-                              )),
-                      pw.Text("Vickneshvararajah",
-                          textScaleFactor: 2,
-                          style: pw.Theme.of(context).defaultTextStyle.copyWith(
-                              fontStyle: pw.FontStyle.italic,
-                              fontWeight: pw.FontWeight.bold)),
+                      pw.Text("Elelan".toUpperCase(),
+                          style: pw.TextStyle(fontSize: 26, font: pw.Font.courierBold())),
+                      pw.Text("Vickneshvararajah".toUpperCase(),
+                          style: pw.TextStyle(fontSize: 26, font: pw.Font.courierBold())),
                       pw.Text('Mobile Developer',
-                          textScaleFactor: 1.2,
-                          style: pw.Theme.of(context).defaultTextStyle.copyWith(
-                              font: pw.Font.times(),
-                              fontWeight: pw.FontWeight.bold,
-                              color: PdfColor.fromHex("#b4ddff"))),
+                          style: pw.TextStyle(fontSize: 13.29, color: PdfColor.fromHex("#b4ddff"))),
                       pw.Row(
                           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                           children: <pw.Widget>[
@@ -130,23 +120,35 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                         pw.Container(
                           width: 100,
                           height: 100,
-                          color: lightGreen,
-                          child: pw.Image(profileImage),
+                          decoration: pw.BoxDecoration(borderRadius: pw.BorderRadius.circular(8), border: pw.Border.all(width: 0.5)),
+                          child: pw.ClipRRect(
+                            horizontalRadius: 8,
+                            verticalRadius: 8,
+                            child: pw.Image(profileImage, width: 100, height: 100, fit: pw.BoxFit.cover,)
+                          ),
                         )
                       ]),
                 ),
               ])),
           pw.Container(
-              padding: pw.EdgeInsets.only(top: 30),
+              padding: pw.EdgeInsets.only(top: 15),
               child: pw.Row(
                   //mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
                   children: [
                     pw.Expanded(
                         flex: 3,
                         child: pw.Container(
-                            child: pw.Column(children: <pw.Widget>[
+                          //color: PdfColors.pink,
+                            child: pw.Column(
+                                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                                mainAxisAlignment: pw.MainAxisAlignment.start,
+                                mainAxisSize: pw.MainAxisSize.min,
+                                children: <pw.Widget>[
                           ContentHeader(title: 'Experience'),
-                          ContentBody(),
+                          ContentBody(
+                            title: 'Trainee Software Engineer (Android)',
+                            subtitle: 'Bellvantage'
+                          ),
                           ContentHeader(title: 'Projects'),
                           ContentHeader(title: 'Education'),
                         ]))),
@@ -154,9 +156,12 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                     pw.Expanded(
                         flex: 2,
                         child: pw.Container(
-                            color: PdfColors.grey,
                             alignment: pw.Alignment.topLeft,
-                            child: pw.Column(children: <pw.Widget>[
+                            child: pw.Column(
+                                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                                mainAxisAlignment: pw.MainAxisAlignment.start,
+                                mainAxisSize: pw.MainAxisSize.min,
+                                children: <pw.Widget>[
                               ContentHeader(title: 'Skills'),
                               ContentHeader(title: 'Languages'),
                               ContentHeader(title: 'Find me online'),
@@ -165,21 +170,38 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                   ])),
         ];
       },
+      footer: _buildFooter
     ),
   );
   return doc.save();
 }
 
+pw.Widget _buildFooter(pw.Context context) {
+  return pw.Row(
+    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: pw.CrossAxisAlignment.end,
+    children: [
+      pw.Text(
+        'Page ${context.pageNumber}/${context.pagesCount}',
+        style: const pw.TextStyle(
+          fontSize: 12,
+          color: PdfColors.white,
+        ),
+      ),
+    ],
+  );
+}
+
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
-  final bgShape = await rootBundle.loadString('assets/resume_bg.svg');
+  final bgShape = await rootBundle.loadString('assets/resume_bg_2.svg');
 
   format = format.applyMargin(
-      left: 2.0 * PdfPageFormat.cm,
+      left: 0.5 * PdfPageFormat.cm,
       top: 2.0 * PdfPageFormat.cm,
-      right: 2.0 * PdfPageFormat.cm,
+      right: 0.5 * PdfPageFormat.cm,
       bottom: 2.0 * PdfPageFormat.cm);
   return pw.PageTheme(
-    pageFormat: format,
+    pageFormat: PdfPageFormat.a4,
     theme: pw.ThemeData.withFont(
       base: pw.Font.ttf(await rootBundle.load('assets/open-sans.ttf')),
       bold: pw.Font.ttf(await rootBundle.load('assets/open-sans-bold.ttf')),
@@ -188,21 +210,22 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
     buildBackground: (pw.Context context) {
       return pw.FullPage(
         ignoreMargins: true,
-        child: pw.Stack(
-          children: [
-            pw.Positioned(
-              child: pw.SvgImage(svg: bgShape),
-              left: 0,
-              top: 0,
-            ),
-            pw.Positioned(
-              child: pw.Transform.rotate(
-                  angle: pi, child: pw.SvgImage(svg: bgShape)),
-              right: 0,
-              bottom: 0,
-            ),
-          ],
-        ),
+        // child: pw.Stack(
+        //   children: [
+        //     pw.Positioned(
+        //       child: pw.SvgImage(svg: bgShape),
+        //       left: 0,
+        //       top: 0,
+        //     ),
+        //     pw.Positioned(
+        //       child: pw.Transform.rotate(
+        //           angle: pi, child: pw.SvgImage(svg: bgShape)),
+        //       right: 0,
+        //       bottom: 0,
+        //     ),
+        //   ],
+        // ),
+        child: pw.SvgImage(svg: bgShape)
       );
     },
   );
