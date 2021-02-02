@@ -29,7 +29,9 @@ dependencies:
   pdf:
   printing:
   flutter_vector_icons:
+  material_design_icons_flutter:
   google_fonts:
+  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +41,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/fonts/

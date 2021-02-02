@@ -3,7 +3,6 @@ import 'package:flutter_resume_pdf/widget/resume.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 void main() {
   runApp(MyApp());
 }

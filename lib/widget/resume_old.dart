@@ -25,10 +25,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
-PdfColor lightBlue = PdfColor.fromHex('#66ccff');
 const PdfColor lightGreen = PdfColor.fromInt(0xffcdf1e7);
 const sep = 120.0;
-const pw.IconData call = pw.IconData(0xe625);
 
 Future<Uint8List> generateResume(PdfPageFormat format) async {
   final doc = pw.Document(title: 'My Résumé', author: 'David PHAM-VAN');
@@ -50,101 +48,69 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: <pw.Widget>[
                   pw.Container(
-                    decoration:
-                        pw.BoxDecoration(color: PdfColor.fromHex("#b3ff66")),
-                    padding: const pw.EdgeInsets.only(bottom: 20),
+                    padding: const pw.EdgeInsets.only(left: 30, bottom: 20),
                     child: pw.Column(
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: <pw.Widget>[
-                        pw.Text('Elelan',
+                        pw.Text('Parnella Charlesbois',
                             textScaleFactor: 2,
                             style: pw.Theme.of(context)
                                 .defaultTextStyle
                                 .copyWith(fontWeight: pw.FontWeight.bold)),
-                        // pw.Padding(padding: const pw.EdgeInsets.only(top: 10)),
-                        pw.Text('Vickneshvararajah',
-                            textScaleFactor: 2,
-                            style: pw.Theme.of(context)
-                                .defaultTextStyle
-                                .copyWith(
-                                    font: pw.Font.times(),
-                                    fontWeight: pw.FontWeight.bold)),
-                        pw.Padding(padding: const pw.EdgeInsets.only(top: 6)),
-                        pw.Text('Mobile Developer',
+                        pw.Padding(padding: const pw.EdgeInsets.only(top: 10)),
+                        pw.Text('Electrotyper',
                             textScaleFactor: 1.2,
                             style: pw.Theme.of(context)
                                 .defaultTextStyle
                                 .copyWith(
-                                    font: pw.Font.times(),
                                     fontWeight: pw.FontWeight.bold,
-                                    color: PdfColor.fromHex("#66d9ff"))),
+                                    color: green)),
                         pw.Padding(padding: const pw.EdgeInsets.only(top: 20)),
-                        pw.Container(
-                            color: PdfColor.fromHex("#66d9ff"),
-                            child: pw.Column(children: <pw.Widget>[
-                              pw.Row(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    pw.MainAxisAlignment.spaceBetween,
-                                children: <pw.Widget>[
-                                  pw.Container(
-                                      child: pw.Row(
-                                        children: <pw.Widget>[
-                                          pw.Icon(const pw.IconData(0xe626)),
-                                          pw.Text('0774201749'),
-                                        ],
-                                      ),
-                                  ),
-                                  pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: <pw.Widget>[
-                                      pw.Text('+1 403-721-6898'),
-                                      _UrlText('p.charlesbois@yahoo.com',
-                                          'mailto:p.charlesbois@yahoo.com'),
-                                      _UrlText('wholeprices.ca',
-                                          'https://wholeprices.ca'),
-                                    ],
-                                  ),
-                                  pw.Padding(padding: pw.EdgeInsets.zero)
-                                ],
-                              ),
-                              pw.Row(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    pw.MainAxisAlignment.spaceBetween,
-                                children: <pw.Widget>[
-                                  pw.Container(
-                                      child: pw.Column(
-                                        crossAxisAlignment:
-                                            pw.CrossAxisAlignment.start,
-                                        children: <pw.Widget>[
-                                          pw.Text('568 Port Washington Road'),
-                                          pw.Text('Nordegg, AB T0M 2H0'),
-                                          pw.Text('Canada, ON'),
-                                        ],
-                                      ),
-                                      color: PdfColor.fromHex('#ffff66')),
-                                  pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: <pw.Widget>[
-                                      pw.Text('+1 403-721-6898'),
-                                      _UrlText('p.charlesbois@yahoo.com',
-                                          'mailto:p.charlesbois@yahoo.com'),
-                                      _UrlText('wholeprices.ca',
-                                          'https://wholeprices.ca'),
-                                    ],
-                                  ),
-                                  pw.Padding(padding: pw.EdgeInsets.zero)
-                                ],
-                              )
-                            ])),
+                        pw.Row(
+                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                          children: <pw.Widget>[
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: <pw.Widget>[
+                                pw.Text('568 Port Washington Road'),
+                                pw.Text('Nordegg, AB T0M 2H0'),
+                                pw.Text('Canada, ON'),
+                              ],
+                            ),
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: <pw.Widget>[
+                                pw.Text('+1 403-721-6898'),
+                                _UrlText('p.charlesbois@yahoo.com',
+                                    'mailto:p.charlesbois@yahoo.com'),
+                                _UrlText(
+                                    'wholeprices.ca', 'https://wholeprices.ca'),
+                              ],
+                            ),
+                            pw.Padding(padding: pw.EdgeInsets.zero)
+                          ],
+                        ),
                       ],
                     ),
                   ),
                   _Category(title: 'Work Experience'),
+                  _Block(
+                      title: 'Tour bus driver',
+                      icon: const pw.IconData(0xe530)),
+                  _Block(
+                      title: 'Logging equipment operator',
+                      icon: const pw.IconData(0xe30d)),
+                  _Block(title: 'Foot doctor', icon: const pw.IconData(0xe3f3)),
+                  _Block(
+                      title: 'Unicorn trainer',
+                      icon: const pw.IconData(0xf0cf)),
+                  _Block(
+                      title: 'Chief chatter', icon: const pw.IconData(0xe0ca)),
+                  pw.SizedBox(height: 20),
                   _Category(title: 'Education'),
+                  _Block(title: 'Bachelor Of Commerce'),
+                  _Block(title: 'Bachelor Interior Design'),
                 ],
               ),
             ),
@@ -153,20 +119,19 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
               child: pw.Column(
                 children: [
                   pw.Container(
-                    color: PdfColor.fromHex("#ff668c"),
                     height: pageTheme.pageFormat.availableHeight,
                     child: pw.Column(
                       crossAxisAlignment: pw.CrossAxisAlignment.center,
                       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       children: <pw.Widget>[
-
-                          pw.Container(
+                        pw.ClipOval(
+                          child: pw.Container(
                             width: 100,
                             height: 100,
                             color: lightGreen,
                             child: pw.Image(profileImage),
                           ),
-
+                        ),
                         pw.Column(children: <pw.Widget>[
                           _Percent(size: 60, value: .7, title: pw.Text('Word')),
                           _Percent(
@@ -193,11 +158,11 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
 }
 
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
-  final bgShape = await rootBundle.loadString('assets/resume_bg.svg');
+  final bgShape = await rootBundle.loadString('assets/resume.svg');
 
   format = format.applyMargin(
       left: 2.0 * PdfPageFormat.cm,
-      top: 2.0 * PdfPageFormat.cm,
+      top: 4.0 * PdfPageFormat.cm,
       right: 2.0 * PdfPageFormat.cm,
       bottom: 2.0 * PdfPageFormat.cm);
   return pw.PageTheme(

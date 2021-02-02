@@ -15,17 +15,21 @@
  */
 
 import 'dart:async';
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_resume_pdf/model/content_model.dart';
+import 'package:flutter_resume_pdf/model/languages.dart';
+import 'package:flutter_resume_pdf/model/online_info.dart';
+import 'package:flutter_resume_pdf/model/user_model.dart';
+import 'package:flutter_resume_pdf/widget/icon_model.dart';
 import 'package:meta/meta.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import 'content_body.dart';
+import 'content_extra.dart';
 import 'content_header.dart';
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
@@ -35,143 +39,267 @@ const sep = 120.0;
 const pw.IconData call = pw.IconData(0xe625);
 
 Future<Uint8List> generateResume(PdfPageFormat format) async {
-  final doc = pw.Document(title: 'My Résumé', author: 'David PHAM-VAN');
+  final doc = pw.Document(title: 'My Resume', author: 'Elelan Vicknesh');
 
   final profileImage = pw.MemoryImage(
     (await rootBundle.load('assets/profile.jpg')).buffer.asUint8List(),
   );
 
+  final user = UserModel(
+      firstName: 'Elelan',
+      lastName: 'Vickneshvararajah',
+      jobTitle: 'Mobile Developer',
+      mobile: '94-77-420-1749',
+      email: 'elelanv@gmail.com',
+      address: 'Colombo, Sri Lanka');
+
+  final work1 = ContentModel(
+      title: 'Trainee Software Engineer (Android)',
+      subTitle: 'Bellvantage',
+      startDate: '11/2019',
+      endDate: 'Ongoing',
+      address: 'Colombo, SriLanka',
+      descPoints: [
+        "Lankabell Employee Apps development",
+        "Developed multiple apps with background sync, geo tracking, payment collection`"
+      ]);
+
+  final project1 = ContentModel(
+      title: 'Helper',
+      subTitle: '',
+      startDate: '',
+      endDate: '',
+      address: '',
+      tags: [
+        'Android App',
+        'Java',
+        'Firebase'
+      ],
+      descPoints: [
+        'Customer and employee login, registration',
+        'Assigning jobs, accessing firebase real-time database'
+      ]);
+
+  final project2 = ContentModel(
+      title: 'VR Cycling',
+      subTitle: '',
+      startDate: '',
+      endDate: '',
+      address: '',
+      tags: [
+        '(Android VR app)',
+        'Unity',
+        'Firebase',
+        'C#',
+        'Android Studio'
+      ],
+      descPoints: [
+        'Virtual reality video viewing experience using mobile devices',
+        'Provides extra analytical data'
+      ]);
+
+  final edu1 = ContentModel(
+      title: 'Bachelor of Science',
+      subTitle: 'Wayamba University of Sri Lanka',
+      startDate: '2016',
+      endDate: '2019',
+      address: 'Kuliyapitiya, Sri Lanka',
+      descPoints: [
+        'Computing & Info System, Industrial Management, Statistics'
+      ]);
+
+  final edu2 = ContentModel(
+      title: 'Advanced Level',
+      subTitle: "St John's College",
+      startDate: '2000',
+      endDate: '2013',
+      address: 'Jaffna, Sri Lanka',
+      descPoints: ['Combined Mathematics, Physics, ICT']);
+
+  final tags = [
+    'Java',
+    'Android',
+    'Git',
+    'Android Studio',
+    'Flutter',
+    'Dart',
+    'Kotlin',
+    'NodeJs',
+    'JavaScript',
+    'Firebase',
+    'RESTful APIs',
+  ];
+
+  final languages = [
+    Language('English', 'Proficient', 5),
+    Language('Tamil', 'Native', 5),
+    Language('Sinhala', 'Intermediate', 3),
+  ];
+
+  final online = [
+    OnlineInfo('GitLab', '/vickneshelelan', 0xe894),
+    OnlineInfo('/elelan', '', 0xe894)
+  ];
+
   final pageTheme = await _myPageTheme(format);
 
   doc.addPage(
     pw.MultiPage(
-      pageTheme: pageTheme,
-      build: (pw.Context context) {
-        return <pw.Widget>[
-          pw.Container(
-              alignment: pw.Alignment.topLeft,
-              child: pw.Partitions(children: [
-                pw.Partition(
+        maxPages: 1,
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        mainAxisAlignment: pw.MainAxisAlignment.start,
+        pageTheme: pageTheme,
+        build: (pw.Context context) {
+          return <pw.Widget>[
+            pw.Container(
+                alignment: pw.Alignment.topLeft,
+                child: pw.Partitions(children: [
+                  pw.Partition(
+                      child: pw.Column(
+                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                          children: <pw.Widget>[
+                        pw.Text(user.firstName.toUpperCase(),
+                            style: pw.TextStyle(
+                                fontSize: 26, font: pw.Font.courierBold())),
+                        pw.Text(user.lastName.toUpperCase(),
+                            style: pw.TextStyle(
+                                fontSize: 26, font: pw.Font.courierBold())),
+                        pw.Text(user.jobTitle,
+                            style: pw.TextStyle(
+                                color: PdfColors.blue,
+                                fontSize: 13.29,
+                                fontBold: pw.Font.timesBold())),
+                        pw.Row(
+                            mainAxisAlignment:
+                                pw.MainAxisAlignment.spaceBetween,
+                            children: <pw.Widget>[
+                              pw.Container(
+                                  child: pw.Row(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: <pw.Widget>[
+                                    //Call Icon
+                                    pw.Container(
+                                        child:
+                                            IconMdl(0xe551, 12, PdfColors.blue)
+                                        //child: pw.Icon( pw.IconData(0xe551), size: 12, color: PdfColors.blue) //f073 //e109
+                                        ),
+                                    pw.SizedBox(width: 3),
+                                    //Mobile Number
+                                    pw.Text(user.mobile,
+                                        style: pw.TextStyle(fontSize: 8))
+                                  ])),
+                              pw.Container(
+                                  child: pw.Row(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.end,
+                                      children: <pw.Widget>[
+                                    //@Sign
+                                    pw.Container(
+                                        child: IconMdl(
+                                            0xe0be, 12, PdfColors.blue)),
+
+                                    pw.SizedBox(width: 3),
+                                    //email
+                                    pw.Text(user.email,
+                                        style: pw.TextStyle(fontSize: 8))
+                                  ]))
+                            ]),
+                        pw.Row(
+                            mainAxisAlignment:
+                                pw.MainAxisAlignment.spaceBetween,
+                            children: <pw.Widget>[
+                              pw.Container(
+                                  child: pw.Row(
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: <pw.Widget>[
+                                    //Location Icon Icon
+                                    pw.Container(
+                                        child: IconMdl(
+                                            0xe88a, 12, PdfColors.blue)),
+                                    pw.SizedBox(width: 3),
+                                    //Address
+                                    pw.Text(user.address,
+                                        style: pw.TextStyle(fontSize: 8))
+                                  ])),
+                            ])
+                      ])),
+                  pw.Partition(
+                    width: sep,
                     child: pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        mainAxisAlignment: pw.MainAxisAlignment.start,
+                        crossAxisAlignment: pw.CrossAxisAlignment.end,
                         children: <pw.Widget>[
-                      pw.Text("Elelan".toUpperCase(),
-                          style: pw.TextStyle(fontSize: 26, font: pw.Font.courierBold())),
-                      pw.Text("Vickneshvararajah".toUpperCase(),
-                          style: pw.TextStyle(fontSize: 26, font: pw.Font.courierBold())),
-                      pw.Text('Mobile Developer',
-                          style: pw.TextStyle(fontSize: 13.29, color: PdfColor.fromHex("#b4ddff"))),
-                      pw.Row(
-                          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                          children: <pw.Widget>[
-                            pw.Container(
-                                child: pw.Row(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: <pw.Widget>[
-                                  //Call Icon
-                                  pw.Container(
-                                    height: 20,
-                                    width: 20,
-                                    child: pw.Text('a'),
-                                  ),
-                                  //Mobile Number
-                                  pw.Text('0774201749')
-                                ])),
-                            pw.Container(
-                                child: pw.Row(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.end,
-                                    children: <pw.Widget>[
-                                  //@Sign
-                                  pw.Container(
-                                    height: 20,
-                                    width: 20,
-                                    child: pw.Text('a'),
-                                  ),
-                                  //email
-                                  pw.Text('elelanv@gamil.com')
-                                ]))
-                          ]),
-                      pw.Row(
-                          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                          children: <pw.Widget>[
-                            pw.Container(
-                                child: pw.Row(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: <pw.Widget>[
-                                  //Location Icon Icon
-                                  pw.Container(
-                                    height: 20,
-                                    width: 20,
-                                    child: pw.Text('a'),
-                                  ),
-                                  //Address
-                                  pw.Text('Colombo, Sri Lanka')
-                                ])),
-                          ])
+                          pw.Container(
+                            width: 100,
+                            height: 100,
+                            decoration: pw.BoxDecoration(
+                                borderRadius: pw.BorderRadius.circular(8),
+                                border: pw.Border.all(width: 0.5)),
+                            child: pw.ClipRRect(
+                                horizontalRadius: 8,
+                                verticalRadius: 8,
+                                child: pw.Image(
+                                  profileImage,
+                                  width: 100,
+                                  height: 100,
+                                  fit: pw.BoxFit.cover,
+                                )),
+                          )
+                        ]),
+                  ),
+                ])),
+            pw.Container(
+                padding: pw.EdgeInsets.only(top: 10),
+                child: pw.Row(
+                    //mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+                    children: [
+                      pw.Expanded(
+                          flex: 3,
+                          child: pw.Container(
+                              padding: pw.EdgeInsets.zero,
+                              child: pw.Column(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  mainAxisAlignment: pw.MainAxisAlignment.start,
+                                  mainAxisSize: pw.MainAxisSize.min,
+                                  children: <pw.Widget>[
+                                    ContentHeader(title: 'Experience'),
+                                    ContentBody(work1),
+                                    ContentHeader(title: 'Projects'),
+                                    ContentBody(project1),
+                                    pw.Text('--------------------------------'),
+                                    ContentBody(project2),
+                                    ContentHeader(title: 'Education'),
+                                    ContentBody(edu1),
+                                    pw.Text('--------------------------------'),
+                                    ContentBody(edu2),
+                                  ]))),
+                      pw.SizedBox(width: 10),
+                      pw.Expanded(
+                          flex: 2,
+                          child: pw.Container(
+                              alignment: pw.Alignment.topLeft,
+                              child: pw.Column(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  mainAxisAlignment: pw.MainAxisAlignment.start,
+                                  mainAxisSize: pw.MainAxisSize.min,
+                                  children: <pw.Widget>[
+                                    ContentHeader(title: 'Skills'),
+                                    ContentExtra(tagList: tags),
+                                    ContentHeader(title: 'Languages'),
+                                    ContentExtra(languageList: languages),
+                                    ContentHeader(title: 'Find me online'),
+                                    ContentExtra(onlineList: online),
+                                    ContentHeader(title: 'Passions'),
+                                    ContentExtra()
+                                  ])))
                     ])),
-                pw.Partition(
-                  width: sep,
-                  child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.end,
-                      children: <pw.Widget>[
-                        pw.Container(
-                          width: 100,
-                          height: 100,
-                          decoration: pw.BoxDecoration(borderRadius: pw.BorderRadius.circular(8), border: pw.Border.all(width: 0.5)),
-                          child: pw.ClipRRect(
-                            horizontalRadius: 8,
-                            verticalRadius: 8,
-                            child: pw.Image(profileImage, width: 100, height: 100, fit: pw.BoxFit.cover,)
-                          ),
-                        )
-                      ]),
-                ),
-              ])),
-          pw.Container(
-              padding: pw.EdgeInsets.only(top: 15),
-              child: pw.Row(
-                  //mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
-                  children: [
-                    pw.Expanded(
-                        flex: 3,
-                        child: pw.Container(
-                          //color: PdfColors.pink,
-                            child: pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                mainAxisAlignment: pw.MainAxisAlignment.start,
-                                mainAxisSize: pw.MainAxisSize.min,
-                                children: <pw.Widget>[
-                          ContentHeader(title: 'Experience'),
-                          ContentBody(
-                            title: 'Trainee Software Engineer (Android)',
-                            subtitle: 'Bellvantage'
-                          ),
-                          ContentHeader(title: 'Projects'),
-                          ContentHeader(title: 'Education'),
-                        ]))),
-                    pw.SizedBox(width: 10),
-                    pw.Expanded(
-                        flex: 2,
-                        child: pw.Container(
-                            alignment: pw.Alignment.topLeft,
-                            child: pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                mainAxisAlignment: pw.MainAxisAlignment.start,
-                                mainAxisSize: pw.MainAxisSize.min,
-                                children: <pw.Widget>[
-                              ContentHeader(title: 'Skills'),
-                              ContentHeader(title: 'Languages'),
-                              ContentHeader(title: 'Find me online'),
-                              ContentHeader(title: 'Passions'),
-                            ])))
-                  ])),
-        ];
-      },
-      footer: _buildFooter
-    ),
+          ];
+        },
+        footer: _buildFooter),
   );
   return doc.save();
 }
@@ -193,40 +321,43 @@ pw.Widget _buildFooter(pw.Context context) {
 }
 
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
-  final bgShape = await rootBundle.loadString('assets/resume_bg_2.svg');
+  final bgShape = await rootBundle.loadString('assets/invoice.svg');
 
   format = format.applyMargin(
       left: 0.5 * PdfPageFormat.cm,
-      top: 2.0 * PdfPageFormat.cm,
+      top: 0.5 * PdfPageFormat.cm,
       right: 0.5 * PdfPageFormat.cm,
-      bottom: 2.0 * PdfPageFormat.cm);
+      bottom: 1.0 * PdfPageFormat.cm);
   return pw.PageTheme(
     pageFormat: PdfPageFormat.a4,
     theme: pw.ThemeData.withFont(
       base: pw.Font.ttf(await rootBundle.load('assets/open-sans.ttf')),
       bold: pw.Font.ttf(await rootBundle.load('assets/open-sans-bold.ttf')),
-      icons: pw.Font.ttf(await rootBundle.load('assets/material.ttf')),
+      //icons: pw.Font.ttf(await rootBundle.load('assets/material.ttf')),
+      icons: pw.Font.ttf(
+          await rootBundle.load('assets/fonts/MaterialIcons-Regular.ttf')),
+      //icons: pw.Font.ttf(await rootBundle.load('assets/fonts/materialicons-regular.ttf')),
     ),
     buildBackground: (pw.Context context) {
       return pw.FullPage(
-        ignoreMargins: true,
-        // child: pw.Stack(
-        //   children: [
-        //     pw.Positioned(
-        //       child: pw.SvgImage(svg: bgShape),
-        //       left: 0,
-        //       top: 0,
-        //     ),
-        //     pw.Positioned(
-        //       child: pw.Transform.rotate(
-        //           angle: pi, child: pw.SvgImage(svg: bgShape)),
-        //       right: 0,
-        //       bottom: 0,
-        //     ),
-        //   ],
-        // ),
-        child: pw.SvgImage(svg: bgShape)
-      );
+          ignoreMargins: true,
+          // child: pw.Stack(
+          //   children: [
+          //     pw.Positioned(
+          //       child: pw.SvgImage(svg: bgShape),
+          //       left: 0,
+          //       top: 0,
+          //     ),
+          //     pw.Positioned(
+          //       child: pw.Transform.rotate(
+          //           angle: pi, child: pw.SvgImage(svg: bgShape)),
+          //       right: 0,
+          //       bottom: 0,
+          //     ),
+          //   ],
+          // ),
+          child: pw.Container(child: pw.SvgImage(svg: bgShape)));
+      //child: pw.Container(color: PdfColors.grey500));
     },
   );
 }
