@@ -31,6 +31,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'content_body.dart';
 import 'content_extra.dart';
 import 'content_header.dart';
+import 'network_images.dart';
 
 const PdfColor green = PdfColor.fromInt(0xff9ce5d0);
 PdfColor lightBlue = PdfColor.fromHex('#66ccff');
@@ -136,9 +137,15 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
     Language('Sinhala', 'Intermediate', 3),
   ];
 
+  final gitLabImg = await networkImage('https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png');
+  final linkedInImg = await networkImage('https://img.icons8.com/cute-clipart/64/000000/linkedin.png');
+  final twitterImg = await networkImage('https://img.icons8.com/cute-clipart/64/000000/twitter.png');
+  //
+
   final online = [
-    OnlineInfo('GitLab', '/vickneshelelan', 0xe894),
-    OnlineInfo('/elelan', '', 0xe894)
+    OnlineInfo('GitLab', '/vickneshelelan', gitLabImg),
+    OnlineInfo('/elelan', '', linkedInImg),
+    OnlineInfo('@vickneshelelan', '', twitterImg)
   ];
 
   final pageTheme = await _myPageTheme(format);
@@ -322,7 +329,7 @@ pw.Widget _buildFooter(pw.Context context) {
 
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
   final bgShape = await rootBundle.loadString('assets/invoice.svg');
-
+  final bgImg = await networkImage('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg');
   format = format.applyMargin(
       left: 0.5 * PdfPageFormat.cm,
       top: 0.5 * PdfPageFormat.cm,
@@ -356,7 +363,7 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
           //     ),
           //   ],
           // ),
-          child: pw.Container(child: pw.SvgImage(svg: bgShape)));
+          child: pw.Container(child: pw.Image(bgImg, fit: pw.BoxFit.cover)));
       //child: pw.Container(color: PdfColors.grey500));
     },
   );

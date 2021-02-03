@@ -1,9 +1,10 @@
-import 'package:pdf/widgets.dart' as pw;
+
+import 'package:pdf/widgets.dart';
 
 class OnlineInfo {
-  final int iconData;
   final String name;
   final String url;
+  final ImageProvider imageProvider;
 
-  OnlineInfo(this.name, this.url, this.iconData);
+  OnlineInfo(this.name, this.url, this.imageProvider);
 }

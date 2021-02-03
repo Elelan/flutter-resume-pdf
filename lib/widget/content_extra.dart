@@ -101,9 +101,10 @@ class ContentExtra extends pw.StatelessWidget {
           mainAxisAlignment: pw.MainAxisAlignment.start,
           children: <pw.Widget>[
             pw.Container(
-              height: 20,
-              width: 30,
-              child: IconMdl(onlineInfo.iconData, 15, PdfColors.blue)
+              height: 50,
+              width: 50,
+              //child: IconMdl(onlineInfo.iconData, 15, PdfColors.blue)
+              child: pw.Image(onlineInfo.imageProvider)
             ),
             pw.Container(
               height: 25,
