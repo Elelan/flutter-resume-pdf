@@ -1,6 +1,5 @@
 import 'package:flutter_resume_pdf/model/languages.dart';
 import 'package:flutter_resume_pdf/model/online_info.dart';
-import 'package:flutter_resume_pdf/widget/icon_model.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -62,7 +61,7 @@ class ContentExtra extends pw.StatelessWidget {
                           children: <pw.Widget>[
                             pw.Text(lng.language),
                             pw.Text(lng.level,
-                                style: pw.TextStyle(fontSize: 8)),
+                                style: pw.TextStyle(fontSize: 8, color: PdfColors.grey700)),
                           ]))),
               pw.Expanded(
                   flex: 1, child: pw.Container(child: _skillView(lng.point))),
@@ -76,8 +75,9 @@ class ContentExtra extends pw.StatelessWidget {
           return pw.Container(
               child: pw.CircularProgressIndicator(
                 value: point.floorToDouble(),
-                strokeWidth: 2,
+                strokeWidth: 5,
                 color: index < point ? PdfColors.blue : PdfColors.grey,
+                backgroundColor: index < point ? PdfColors.blue : PdfColors.grey,
               ),
               margin: pw.EdgeInsets.only(right: 3),
               height: 10,
@@ -94,32 +94,33 @@ class ContentExtra extends pw.StatelessWidget {
   }
 
   _onlineInfo() {
-    return pw.ListView.builder(itemBuilder: (ctx, index){
-      final onlineInfo = onlineList[index];
-      return pw.Container(
-        child: pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.start,
-          children: <pw.Widget>[
-            pw.Container(
-              height: 50,
-              width: 50,
-              //child: IconMdl(onlineInfo.iconData, 15, PdfColors.blue)
-              child: pw.Image(onlineInfo.imageProvider)
-            ),
-            pw.Container(
-              height: 25,
-                child: pw.Column(
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+    return pw.ListView.builder(
+        itemBuilder: (ctx, index) {
+          final onlineInfo = onlineList[index];
+          return pw.Container(
+              child: pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.start,
                   children: <pw.Widget>[
-                    pw.Text(onlineInfo.name, style: pw.TextStyle(color: PdfColors.black, fontSize: 10)),
-                    if(onlineInfo.url.isNotEmpty) pw.Text(onlineInfo.url, style: pw.TextStyle(color: PdfColors.grey900, fontSize: 8))
-                  ]
-              )
-            )
-          ]
-        )
-      );
-    }, itemCount: onlineList.length);
+                pw.Container(
+                    height: 20,
+                    width: 15,
+                    //child: IconMdl(onlineInfo.iconData, 15, PdfColors.blue)
+                    child: pw.Image(onlineInfo.imageProvider)),
+                pw.Container(
+                  padding: pw.EdgeInsets.only(left: 10),
+                  height: 20,
+                  child: onlineInfo.url.isNotEmpty
+                      ? pw.UrlLink(
+                          destination: onlineInfo.url,
+                          child: pw.Text(onlineInfo.name,
+                              style: pw.TextStyle(
+                                  color: PdfColors.black, fontSize: 10)))
+                      : pw.Text(onlineInfo.name,
+                          style: pw.TextStyle(
+                              color: PdfColors.black, fontSize: 10)),
+                )
+              ]));
+        },
+        itemCount: onlineList.length);
   }
 }

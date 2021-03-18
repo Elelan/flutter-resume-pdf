@@ -9,7 +9,7 @@ class ContentHeader extends pw.StatelessWidget {
   pw.Widget build(pw.Context context) {
     return pw.Header(
         child: pw.Container(
-      child: pw.Text(title.toUpperCase(), style: pw.TextStyle(fontSize: 15)),
+      child: pw.Text(title.toUpperCase(), style: pw.TextStyle(fontSize: 15, fontBold: pw.Font.courierBoldOblique())),
       //color: PdfColors.blue
     ));
   }

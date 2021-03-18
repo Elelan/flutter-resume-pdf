@@ -99,6 +99,24 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
         'Provides extra analytical data'
       ]);
 
+  final project3 = ContentModel(
+      title: 'www.SpicesExpert.com',
+      subTitle: 'Personal project',
+      startDate: '',
+      endDate: '',
+      address: '',
+      tags: [
+        'React',
+        'Express js',
+        'Node js',
+        'AWS',
+        'Firebase'
+      ],
+      descPoints: [
+        'Created and hosted MERN e-commerce project',
+        'Built restful apis and nodejs backend with mongodb '
+      ]);
+
   final edu1 = ContentModel(
       title: 'Bachelor of Science',
       subTitle: 'Wayamba University of Sri Lanka',
@@ -143,9 +161,20 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
   //
 
   final online = [
-    OnlineInfo('GitLab', '/vickneshelelan', gitLabImg),
-    OnlineInfo('/elelan', '', linkedInImg),
+    OnlineInfo('/vickneshelelan', 'https://gitlab.com/vickneshelelan', gitLabImg),
+    OnlineInfo('/elelan', 'https://www.linkedin.com/in/elelan/', linkedInImg),
     OnlineInfo('@vickneshelelan', '', twitterImg)
+  ];
+
+
+  
+  // final coding = await networkImage("https://img.icons8.com/pastel-glyph/64/000000/laptop-coding--v1.png");
+  final coding = pw.MemoryImage((await rootBundle.load('assets/coding.png')).buffer.asUint8List());
+  // final gaming = await networkImage('https://img.icons8.com/material-outlined/24/000000/like--v1.png');
+  final gaming = pw.MemoryImage((await rootBundle.load('assets/like.png')).buffer.asUint8List());
+  final passions = [
+    OnlineInfo('Programming', '', coding),
+    OnlineInfo('Gaming', '', gaming),
   ];
 
   final pageTheme = await _myPageTheme(format);
@@ -239,11 +268,13 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                         crossAxisAlignment: pw.CrossAxisAlignment.end,
                         children: <pw.Widget>[
                           pw.Container(
+                            padding: pw.EdgeInsets.only(left: 30),
                             width: 100,
                             height: 100,
                             decoration: pw.BoxDecoration(
                                 borderRadius: pw.BorderRadius.circular(8),
-                                border: pw.Border.all(width: 0.5)),
+                                //border: pw.Border.all(width: 0.5)
+                            ),
                             child: pw.ClipRRect(
                                 horizontalRadius: 8,
                                 verticalRadius: 8,
@@ -275,12 +306,11 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                                     ContentHeader(title: 'Experience'),
                                     ContentBody(work1),
                                     ContentHeader(title: 'Projects'),
+                                    ContentBody(project3),
                                     ContentBody(project1),
-                                    pw.Text('--------------------------------'),
                                     ContentBody(project2),
                                     ContentHeader(title: 'Education'),
                                     ContentBody(edu1),
-                                    pw.Text('--------------------------------'),
                                     ContentBody(edu2),
                                   ]))),
                       pw.SizedBox(width: 10),
@@ -301,7 +331,7 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                                     ContentHeader(title: 'Find me online'),
                                     ContentExtra(onlineList: online),
                                     ContentHeader(title: 'Passions'),
-                                    ContentExtra()
+                                    ContentExtra(onlineList: passions)
                                   ])))
                     ])),
           ];
@@ -337,6 +367,7 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
       bottom: 1.0 * PdfPageFormat.cm);
   return pw.PageTheme(
     pageFormat: PdfPageFormat.a4,
+
     theme: pw.ThemeData.withFont(
       base: pw.Font.ttf(await rootBundle.load('assets/open-sans.ttf')),
       bold: pw.Font.ttf(await rootBundle.load('assets/open-sans-bold.ttf')),
@@ -363,7 +394,8 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
           //     ),
           //   ],
           // ),
-          child: pw.Container(child: pw.Image(bgImg, fit: pw.BoxFit.cover)));
+          //child: pw.Container(child: pw.Image(bgImg, fit: pw.BoxFit.cover))
+      );
       //child: pw.Container(color: PdfColors.grey500));
     },
   );
