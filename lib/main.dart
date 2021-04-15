@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_pdf/ui/home.dart';
 import 'package:flutter_resume_pdf/widget/resume.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
@@ -13,12 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Resume Generator',
+      title: "Elelan's Portfolio",
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Resume'),
+      home: Home(),
     );
   }
 }
