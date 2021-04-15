@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/config/constants.dart';
 import 'package:flutter_resume_pdf/controllers/menu_controller.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SideMenu extends StatelessWidget {
@@ -13,22 +12,33 @@ class SideMenu extends StatelessWidget {
       child: Container(
         color: kDarkBlackColor,
         child: Obx(
-              () => ListView(
+          () => ListView(
             children: [
               DrawerHeader(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kDefaultPadding * 3.5),
-                  child: SvgPicture.asset("assets/icons/logo.svg"),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(1000),
+                      child: Container(
+                        foregroundDecoration: BoxDecoration(
+                          color: Colors.grey,
+                          backgroundBlendMode: BlendMode.saturation,
+                        ),
+                        child: Image.asset(
+                          "assets/profile.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      )),
                 ),
               ),
               ...List.generate(
                 _controller.menuItems.length,
-                    (index) => DrawerItem(
+                (index) => DrawerItem(
                   isActive: index == _controller.selectedIndex,
                   title: _controller.menuItems[index],
                   press: () {
-                    _controller.setMenuIndex(index);
+                    _controller.setMenuIndex(index, true);
                   },
                 ),
               ),

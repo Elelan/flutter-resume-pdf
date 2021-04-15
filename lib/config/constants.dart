@@ -8,3 +8,15 @@ const kBodyTextColor = Color(0xFF666666);
 const kDefaultPadding = 20.0;
 const kMaxWidth = 1232.0;
 const kDefaultDuration = Duration(milliseconds: 250);
+
+const kYellow = Color(0xFFF9A825);
+const kBlack = Color(0xDD000000);
+const kGreyLight = Color(0xFFF5F5F5);
+
+mixin AppStyles {
+  static final TextStyle title = TextStyle(
+    color: kBlack.withOpacity(.8),
+    fontSize: 35,
+    fontWeight: FontWeight.w700,
+  );
+}
