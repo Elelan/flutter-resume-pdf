@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/config/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../responsive_widget.dart';
-
 
 class Social extends StatelessWidget {
   const Social({
@@ -15,27 +14,37 @@ class Social extends StatelessWidget {
     return Row(
       children: [
         if (!Responsive.isMobile(context))
-          SvgPicture.asset("assets/icons/behance-alt.svg"),
-        if (!Responsive.isMobile(context))
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
-            child: SvgPicture.asset("assets/icons/feather_dribbble.svg"),
+          InkWell(
+            child: IconButton(
+              hoverColor: kPrimaryColor,
+                onPressed: () {},
+                icon: Icon(
+                  FontAwesome.facebook,
+                  color: Colors.white,
+                )),
           ),
         if (!Responsive.isMobile(context))
-          SvgPicture.asset("assets/icons/feather_twitter.svg"),
+          IconButton(
+              icon: Icon(
+                FontAwesome.linkedin,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+        if (!Responsive.isMobile(context))
+          IconButton(
+              icon: Icon(
+                FontAwesome.instagram,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+        if (!Responsive.isMobile(context))
+          IconButton(
+              icon: Icon(
+                FontAwesome.gitlab,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
         SizedBox(width: kDefaultPadding),
-        ElevatedButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding * 1.5,
-              vertical:
-                  kDefaultPadding / (Responsive.isDesktop(context) ? 1 : 2),
-            ),
-          ),
-          child: Text("Let's Talk"),
-        ),
       ],
     );
   }
