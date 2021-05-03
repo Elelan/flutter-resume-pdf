@@ -40,25 +40,47 @@ class _HomeState extends State<Home> {
     return Scaffold(
       key: _controller.scaffoldKey,
       drawer: SideMenu(),
-      body: Scrollbar(
-        child: CustomScrollView(
-          controller: _controller.scrollController,
-          slivers: [
-            SliverPersistentHeader(
-                pinned: true,
-                delegate: MySliverAppBar(
-                    expandedHeight: MediaQuery.of(context).size.height * .4)),
-            // SliverToBoxAdapter(
-            //   key: _controller.headerGlobalKey,
-            //   child: Container(
-            //     //padding: EdgeInsets.all(kDefaultPadding),
-            //     constraints: BoxConstraints(maxWidth: kMaxWidth),
-            //     child: SafeArea(child: Header()),
-            //   ),
-            // ),
-            ..._slivers()
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          myAppBar(),
+          Expanded(
+            child: Scrollbar(
+              child: NestedScrollView(
+                controller: _controller.scrollController,
+                headerSliverBuilder: (ctx, i) => <Widget>[
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((BuildContext ctx2, int index) => Column(children: <Widget>[
+
+                    ],)),
+                  )
+                ],
+                // slivers: [
+                //   SliverPersistentHeader(
+                //       pinned: true,
+                //       delegate: MySliverAppBar(
+                //           expandedHeight: MediaQuery.of(context).size.height * .4)),
+                  // SliverToBoxAdapter(
+                  //   key: _controller.headerGlobalKey,
+                  //   child: Container(
+                  //     //padding: EdgeInsets.all(kDefaultPadding),
+                  //     constraints: BoxConstraints(maxWidth: kMaxWidth),
+                  //     child: SafeArea(child: Header()),
+                  //   ),
+                  // ),
+                  body: Container(
+                    child: Column(
+                      children: <Widget>[
+                        About(),
+                        Experience()
+                      ],
+                    ),
+                  ),
+                  //..._slivers()
+
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: _buildFab(),
     );
@@ -93,6 +115,41 @@ class _HomeState extends State<Home> {
         );
       },
     );
+  }
+
+  Widget myAppBar(){
+    return SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (Responsive.isMobile(context))
+              IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    _controller.openOrCloseDrawer();
+                  }),
+            if (!Responsive.isMobile(context))
+              Container(
+                  padding: EdgeInsets.only(
+                      top: kDefaultPadding, left: kDefaultPadding),
+                  foregroundDecoration: BoxDecoration(
+                    color: Colors.grey,
+                    backgroundBlendMode: BlendMode.saturation,
+                  ),
+                  child: SvgPicture.asset(
+                    'assets/icons/mobile_dev.svg',
+                    width: 80,
+                    height: 80,
+                  )),
+            Spacer(),
+            if (!Responsive.isMobile(context)) WebMenu(),
+            Spacer(),
+            Social()
+          ],
+        ));
   }
 }
 
