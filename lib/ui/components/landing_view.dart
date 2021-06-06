@@ -19,7 +19,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: _controller.landingGlobalKey,
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.9,
       width: double.infinity,
       color: kDarkBlackColor.withOpacity(0.2),
       child: Column(

@@ -72,7 +72,7 @@ class MenuController extends GetxController {
   void scrollToHeader() {
     Scrollable.ensureVisible(
       _headerGlobalKey.currentContext,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
   }
 
