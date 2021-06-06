@@ -13,7 +13,7 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveWidget(
       desktopScreen: Container(
-        color: kBgColor,
+        color: kAboutBg,
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * .15, vertical: 100),
         child: Column(

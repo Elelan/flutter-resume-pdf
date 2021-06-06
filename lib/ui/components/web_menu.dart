@@ -69,7 +69,7 @@ class _WebMenuItemState extends State<WebMenuItem> {
         child: Text(
           widget.text,
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.normal,
           ),
         ),

@@ -55,14 +55,14 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
       address: 'Colombo, Sri Lanka');
 
   final work1 = ContentModel(
-      title: 'Trainee Software Engineer (Android)',
+      title: 'Software Engineer (Android)',
       subTitle: 'Bellvantage',
       startDate: '11/2019',
       endDate: 'Ongoing',
       address: 'Colombo, SriLanka',
       descPoints: [
         "Lankabell Employee Apps development",
-        "Developed multiple apps with background sync, geo tracking, payment collection`"
+        "Developed multiple apps with background/foreground services, Location, Payment Integration"
       ]);
 
   final project1 = ContentModel(
@@ -114,7 +114,7 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
       ],
       descPoints: [
         'Created and hosted MERN e-commerce project',
-        'Built restful apis and nodejs backend with mongodb '
+        'Built restful apis and nodejs backend with mongodb'
       ]);
 
   final edu1 = ContentModel(
@@ -155,9 +155,13 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
     Language('Sinhala', 'Intermediate', 3),
   ];
 
-  final gitLabImg = await networkImage('https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png');
-  final linkedInImg = await networkImage('https://img.icons8.com/cute-clipart/64/000000/linkedin.png');
-  final twitterImg = await networkImage('https://img.icons8.com/cute-clipart/64/000000/twitter.png');
+  final gitlab_url = 'https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png';
+  final linkedn_url = 'https://img.icons8.com/cute-clipart/64/000000/linkedin.png';
+  final twitter_url = 'https://img.icons8.com/cute-clipart/64/000000/twitter.png';
+  // final gitLabImg = await networkImage('');
+  final gitLabImg = await imageFromAssetBundle('assets/images/gitlab_icon.png');
+  final linkedInImg = await imageFromAssetBundle('assets/images/linkedin_icon.png');
+  final twitterImg = await imageFromAssetBundle('assets/images/twitter_icon.png');
   //
 
   final online = [
@@ -349,17 +353,26 @@ pw.Widget _buildFooter(pw.Context context) {
       pw.Text(
         'Page ${context.pageNumber}/${context.pagesCount}',
         style: const pw.TextStyle(
-          fontSize: 12,
-          color: PdfColors.white,
+          fontSize: 9,
+          color: PdfColors.black,
         ),
       ),
+      pw.Link(
+        destination: "https://github.com/DavBfr/dart_pdf",
+        child: pw.Text('This resume is generated using flutter pdf',
+            style: const pw.TextStyle(
+                fontSize: 8,
+                color: PdfColors.black
+            ))
+      ),
+
     ],
   );
 }
 
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
   final bgShape = await rootBundle.loadString('assets/invoice.svg');
-  final bgImg = await networkImage('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg');
+  final bgImg = await imageFromAssetBundle('assets/images/bg.jpeg');
   format = format.applyMargin(
       left: 0.5 * PdfPageFormat.cm,
       top: 0.5 * PdfPageFormat.cm,

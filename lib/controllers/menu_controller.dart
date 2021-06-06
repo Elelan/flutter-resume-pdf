@@ -9,6 +9,7 @@ class MenuController extends GetxController {
   RxInt _selectedIndex = 0.obs;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey _headerGlobalKey = GlobalKey();
+  GlobalKey _landingGlobalKey = GlobalKey();
   GlobalKey _aboutGlobalKey = GlobalKey();
   GlobalKey _experienceGlobalKey = GlobalKey();
   ScrollController _scrollController = ScrollController();
@@ -17,6 +18,8 @@ class MenuController extends GetxController {
   int get selectedIndex => _selectedIndex.value;
 
   GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
+
+  GlobalKey get landingGlobalKey => _landingGlobalKey;
 
   GlobalKey get headerGlobalKey => _headerGlobalKey;
 
@@ -45,6 +48,9 @@ class MenuController extends GetxController {
       openOrCloseDrawer();
     }
     switch (index) {
+      case 9:
+        _scrollToLanding();
+        break;
       case 0:
         _scrollToAbout();
         break;
@@ -68,6 +74,11 @@ class MenuController extends GetxController {
       _headerGlobalKey.currentContext,
       duration: const Duration(seconds: 1),
     );
+  }
+
+  _scrollToLanding() {
+    Scrollable.ensureVisible(_landingGlobalKey.currentContext,
+        duration: const Duration(seconds: 2));
   }
 
   void _scrollToAbout() {

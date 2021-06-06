@@ -47,10 +47,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PdfPreview(
-        useActions: true,
-        build: generateResume,
+    return SafeArea(
+      child: Scaffold(
+        body: PdfPreview(
+          useActions: true,
+          build: generateResume,
+        ),
       ),
     );
   }

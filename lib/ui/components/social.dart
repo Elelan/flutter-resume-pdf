@@ -16,32 +16,32 @@ class Social extends StatelessWidget {
         if (!Responsive.isMobile(context))
           InkWell(
             child: IconButton(
-              hoverColor: kPrimaryColor,
+                hoverColor: kDarkBlackColor,
                 onPressed: () {},
                 icon: Icon(
                   FontAwesome.facebook,
-                  color: Colors.white,
+                  color: kPrimaryColor,
                 )),
           ),
         if (!Responsive.isMobile(context))
           IconButton(
               icon: Icon(
                 FontAwesome.linkedin,
-                color: Colors.white,
+                color: kPrimaryColor,
               ),
               onPressed: () {}),
         if (!Responsive.isMobile(context))
           IconButton(
               icon: Icon(
                 FontAwesome.instagram,
-                color: Colors.white,
+                color: kPrimaryColor,
               ),
               onPressed: () {}),
         if (!Responsive.isMobile(context))
           IconButton(
               icon: Icon(
                 FontAwesome.gitlab,
-                color: Colors.white,
+                color: kPrimaryColor,
               ),
               onPressed: () {}),
         SizedBox(width: kDefaultPadding),
