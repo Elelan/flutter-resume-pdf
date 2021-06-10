@@ -12,6 +12,7 @@ class MenuController extends GetxController {
   GlobalKey _landingGlobalKey = GlobalKey();
   GlobalKey _aboutGlobalKey = GlobalKey();
   GlobalKey _experienceGlobalKey = GlobalKey();
+  GlobalKey _timelineGlobalKey = GlobalKey();
   ScrollController _scrollController = ScrollController();
   StreamController _fabStream = StreamController<bool>();
 
@@ -26,6 +27,7 @@ class MenuController extends GetxController {
   GlobalKey get aboutGlobalKey => _aboutGlobalKey;
 
   GlobalKey get experienceGlobalKey => _experienceGlobalKey;
+  GlobalKey get timelineGlobalKey => _timelineGlobalKey;
 
   ScrollController get scrollController => _scrollController;
 
@@ -58,6 +60,7 @@ class MenuController extends GetxController {
         _scrollToExperience();
         break;
       case 2:
+        _scrollToProjects();
         break;
       default:
         print('default index is $index');
@@ -69,28 +72,34 @@ class MenuController extends GetxController {
     super.onInit();
   }
 
-  void scrollToHeader() {
-    Scrollable.ensureVisible(
+  scrollToHeader() async {
+    await Scrollable.ensureVisible(
       _headerGlobalKey.currentContext,
       duration: const Duration(seconds: 2),
     );
   }
 
-  _scrollToLanding() {
-    Scrollable.ensureVisible(_landingGlobalKey.currentContext,
+  _scrollToLanding() async {
+    await Scrollable.ensureVisible(_landingGlobalKey.currentContext,
         duration: const Duration(seconds: 2));
   }
 
-  void _scrollToAbout() {
-    Scrollable.ensureVisible(
+  _scrollToAbout() async {
+    await Scrollable.ensureVisible(
       _aboutGlobalKey.currentContext,
       duration: const Duration(seconds: 1),
     );
   }
 
-  void _scrollToExperience() {
-    Scrollable.ensureVisible(
+  _scrollToExperience() async {
+    await Scrollable.ensureVisible(
       _experienceGlobalKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+  _scrollToProjects() async {
+    await Scrollable.ensureVisible(
+      _timelineGlobalKey.currentContext,
       duration: const Duration(seconds: 1),
     );
   }

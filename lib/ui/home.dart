@@ -3,6 +3,7 @@ import 'package:flutter_resume_pdf/config/constants.dart';
 import 'package:flutter_resume_pdf/controllers/menu_controller.dart';
 import 'package:flutter_resume_pdf/ui/components/landing_view.dart';
 import 'package:flutter_resume_pdf/ui/components/social.dart';
+import 'package:flutter_resume_pdf/ui/components/timeline.dart';
 import 'package:flutter_resume_pdf/ui/components/web_menu.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -40,31 +41,34 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       key: _controller.scaffoldKey,
       drawer: SideMenu(),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/background.jpg'),
-            fit: BoxFit.cover
-          )
-        ),
+            image: DecorationImage(
+                image: AssetImage('images/background.jpg'), fit: BoxFit.cover)),
         child: Column(
           children: [
-
             MyAppBar(),
             Expanded(
               child: NestedScrollView(
                 controller: _controller.scrollController,
                 headerSliverBuilder: (ctx, innerBoxScroll) {
                   return <Widget>[
+
+                    // SliverPersistentHeader(
+                    //     pinned: true,
+                    //     floating: false,
+                    //     delegate: MySliverAppBar(height: size.height * 0.1
+                    //         //expandedHeight: MediaQuery.of(context).size.height * .4
+                    //         )),
                     SliverList(
-                        delegate: SliverChildBuilderDelegate((BuildContext ctx2, int i) {
+                        delegate: SliverChildBuilderDelegate(
+                            (BuildContext ctx2, int i) {
                       return Column(
-                        children: [
-                          LandingPage()
-                        ],
+                        children: [LandingPage()],
                       );
                     }, childCount: 1))
                   ];
@@ -104,6 +108,10 @@ class _HomeState extends State<Home> {
         SliverToBoxAdapter(
           key: _controller.experienceGlobalKey,
           child: Experience(),
+        ),
+        SliverToBoxAdapter(
+          key: _controller.timelineGlobalKey,
+          child: Timeline(),
         )
       ];
 
@@ -128,3 +136,25 @@ class _HomeState extends State<Home> {
   }
 }
 
+class MySliverAppBar extends SliverPersistentHeaderDelegate {
+  final height;
+
+  MySliverAppBar({this.height});
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return MyAppBar();
+  }
+
+  @override
+  double get maxExtent => height;
+
+  @override
+  double get minExtent => height;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
+}

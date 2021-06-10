@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_pdf/widget/shadow_text.dart';
 import 'package:get/get.dart';
 
 import '../../config/constants.dart';
@@ -6,13 +7,13 @@ import '../../controllers/menu_controller.dart';
 import '../responsive_widget.dart';
 
 class LandingPage extends StatelessWidget {
-
-  final String _name = "Elelan";
-  final String _job = "Mobile Developer";
+  final String _name = "Elelan V";
+  final String _job = "I build things for the Android and web";
   final String _description =
-      'A mobile full stack developer with experience building mobile and web applications';
+      'I am a freelancer from SriLanka with experience building mobile and web applications';
 
   final MenuController _controller = Get.put(MenuController());
+
   LandingPage({Key key}) : super(key: key);
 
   @override
@@ -27,23 +28,22 @@ class LandingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: kDefaultPadding * 2),
-          Text(
-            "I am $_name",
+          Text('Hi, I am'),
+          ShadowText(
+            '$_name',
             style: TextStyle(
-              fontSize: 40,
-              color: kBgColor,
+              fontSize: 50,
+              color: kPrimaryColor,
               fontFamily: 'Raleway',
               fontWeight: FontWeight.bold,
             ),
           ),
           Padding(
-            padding:
-            const EdgeInsets.symmetric(vertical: kDefaultPadding),
-            child: Text(
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+            child: ShadowText(
               '$_job',
-              textAlign: TextAlign.center,
               style: TextStyle(
-                color: kPrimaryColor,
+                color: kBgColor,
                 fontFamily: 'Raleway',
                 fontSize: 40,
                 height: 1.1,
@@ -53,31 +53,28 @@ class LandingPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: kDefaultPadding),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
               child: Text(
                 _description,
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  color: Colors.grey[100],
-                  fontSize: 17,
-                ),
+                      color: Colors.grey[100],
+                      fontSize: 17,
+                    ),
               ),
             ),
           ),
           const SizedBox(height: 5),
-
           ElevatedButton(
             onPressed: () {},
             style: TextButton.styleFrom(
               padding: EdgeInsets.symmetric(
                 horizontal: kDefaultPadding * 1.5,
-                vertical: kDefaultPadding /
-                    (Responsive.isDesktop(context) ? 1 : 2),
+                vertical:
+                    kDefaultPadding / (Responsive.isDesktop(context) ? 1 : 2),
               ),
             ),
-            child: Text('Download Resume'),
+            child: const Text('Get in Touch'),
           ),
-          if (Responsive.isDesktop(context))
-            SizedBox(height: kDefaultPadding),
+          if (Responsive.isDesktop(context)) SizedBox(height: kDefaultPadding),
         ],
       ),
     );

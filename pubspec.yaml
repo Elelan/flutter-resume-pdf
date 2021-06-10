@@ -31,6 +31,7 @@ dependencies:
   pdf:
   printing:
   flutter_vector_icons:
+  font_awesome_flutter:
   material_design_icons_flutter:
   google_fonts:
   flutter_staggered_grid_view:
