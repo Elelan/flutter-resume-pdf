@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       key: _controller.scaffoldKey,
       drawer: SideMenu(),
+      extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
