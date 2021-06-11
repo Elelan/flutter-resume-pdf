@@ -8,11 +8,13 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class MenuController extends GetxController {
   RxInt _selectedIndex = 0.obs;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalKey _headerGlobalKey = GlobalKey();
+
   GlobalKey _landingGlobalKey = GlobalKey();
   GlobalKey _aboutGlobalKey = GlobalKey();
-  GlobalKey _experienceGlobalKey = GlobalKey();
   GlobalKey _timelineGlobalKey = GlobalKey();
+  GlobalKey _projectGlobalKey = GlobalKey();
+  GlobalKey _contactGlobalKey = GlobalKey();
+
   ScrollController _scrollController = ScrollController();
   StreamController _fabStream = StreamController<bool>();
 
@@ -22,19 +24,20 @@ class MenuController extends GetxController {
 
   GlobalKey get landingGlobalKey => _landingGlobalKey;
 
-  GlobalKey get headerGlobalKey => _headerGlobalKey;
-
   GlobalKey get aboutGlobalKey => _aboutGlobalKey;
 
-  GlobalKey get experienceGlobalKey => _experienceGlobalKey;
   GlobalKey get timelineGlobalKey => _timelineGlobalKey;
+
+  GlobalKey get projectGlobalKey => _projectGlobalKey;
+
+  GlobalKey get contactGlobalKey => _contactGlobalKey;
 
   ScrollController get scrollController => _scrollController;
 
   StreamController get fabStream => _fabStream;
 
   List<String> get menuItems =>
-      ["About Me", "Experience", "Projects", "Skills", "Blog", "Contact"];
+      ["Home", "About Me", "Experience", "Projects", "Contact"];
 
   void openOrCloseDrawer() {
     if (_scaffoldKey.currentState.isDrawerOpen) {
@@ -50,17 +53,20 @@ class MenuController extends GetxController {
       openOrCloseDrawer();
     }
     switch (index) {
-      case 9:
-        _scrollToLanding();
+      case 0: //landing page
+        scrollToLanding();
         break;
-      case 0:
+      case 1: //About me
         _scrollToAbout();
         break;
-      case 1:
-        _scrollToExperience();
+      case 2: //Timeline(experience)
+        _scrollToTimeline();
         break;
-      case 2:
+      case 3: //Projects
         _scrollToProjects();
+        break;
+      case 4: //Contact
+        _scrollToContact();
         break;
       default:
         print('default index is $index');
@@ -72,14 +78,7 @@ class MenuController extends GetxController {
     super.onInit();
   }
 
-  scrollToHeader() async {
-    await Scrollable.ensureVisible(
-      _headerGlobalKey.currentContext,
-      duration: const Duration(seconds: 2),
-    );
-  }
-
-  _scrollToLanding() async {
+  scrollToLanding() async {
     await Scrollable.ensureVisible(_landingGlobalKey.currentContext,
         duration: const Duration(seconds: 2));
   }
@@ -91,16 +90,22 @@ class MenuController extends GetxController {
     );
   }
 
-  _scrollToExperience() async {
-    await Scrollable.ensureVisible(
-      _experienceGlobalKey.currentContext,
-      duration: const Duration(seconds: 1),
-    );
-  }
-  _scrollToProjects() async {
+  _scrollToTimeline() async {
     await Scrollable.ensureVisible(
       _timelineGlobalKey.currentContext,
       duration: const Duration(seconds: 1),
     );
+  }
+
+  _scrollToProjects() async {
+    await Scrollable.ensureVisible(
+      _projectGlobalKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  _scrollToContact() async {
+    await Scrollable.ensureVisible(_contactGlobalKey.currentContext,
+        duration: const Duration(seconds: 1));
   }
 }

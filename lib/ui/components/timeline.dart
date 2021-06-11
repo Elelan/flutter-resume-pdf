@@ -14,35 +14,13 @@ class Timeline extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ConstrainedBox(
-      key: _controller.landingGlobalKey,
       constraints:
-          BoxConstraints.tightFor(width: size.width, height: size.height * 1.2),
+          BoxConstraints.tightFor(width: size.width, height: size.height),
       child: Container(
         color: kTimelineBg,
         child: Column(
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 12.0,
-                ),
-                CustomText(
-                  text: "My timeline...",
-                  textsize: 26.0,
-                  color: kDarkBlackColor,
-                  fontWeight: FontWeight.w700,
-                ),
-                SizedBox(
-                  width: size.width * 0.01,
-                ),
-                Container(
-                  width: size.width / 4,
-                  height: 1.10,
-                  color: kPrimaryColor,
-                ),
-              ],
-            ),
+
             SizedBox(
               height: size.height * 0.07,
             ),

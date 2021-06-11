@@ -64,7 +64,9 @@ class LandingPage extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              _controller.setMenuIndex(4, false);
+            },
             style: TextButton.styleFrom(
               padding: EdgeInsets.symmetric(
                 horizontal: kDefaultPadding * 1.5,

@@ -6,6 +6,8 @@ const kBgColor = Color(0xFFE7E7E7);
 const kBodyTextColor = Color(0xFF666666);
 const kAboutBg = Color(0xFFDFE0E5); //#dfe0e5
 const kTimelineBg = Color(0xFFDFE0E5); //#dfe0e5
+const kContactBg = Color(0xFFDFE0E5); //#dfe0e5
+const kCardColor = Color(0xFFFFDEAD); //#FFDEAD
 
 const kDefaultPadding = 25.0;
 const kMaxWidth = 1232.0;
@@ -22,3 +24,21 @@ mixin AppStyles {
     fontWeight: FontWeight.w700,
   );
 }
+
+final kContactIcons = [
+  Icons.home,
+  Icons.phone,
+  Icons.email
+];
+
+final kContactTitles = [
+  'Location',
+  'Phone',
+  'Email'
+];
+
+final kContactDetails = [
+  'Colombo, Sri Lanka',
+  '(+94) 77 420 1749d',
+  'elelanv@gmail.com'
+];

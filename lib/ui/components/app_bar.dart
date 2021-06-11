@@ -27,7 +27,7 @@ class MyAppBar extends StatelessWidget {
           if (!Responsive.isMobile(context))
             InkWell(
               onTap: (){
-                _controller.setMenuIndex(9, false);
+                _controller.setMenuIndex(0, false);
               },
               child: Container(
                   foregroundDecoration: BoxDecoration(
