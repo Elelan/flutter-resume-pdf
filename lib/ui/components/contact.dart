@@ -30,9 +30,9 @@ class Contact extends StatelessWidget {
             height: size.height * 0.02,
           ),
           Stack(
-            fit: StackFit.expand,
             children: [
               Container(
+                width: double.infinity,
                 color: kContactBg,
                 child: SvgPicture.asset(
                   'assets/images/contact_us_optimized.svg',
@@ -49,7 +49,7 @@ class Contact extends StatelessWidget {
                     'Colombo, SriLanka',
                     style: GoogleFonts.montserrat(
                         fontSize: 15,
-                        color: kBgColor,
+                        color: Colors.black,
                         fontWeight: FontWeight.w800),
                   ),
                   SizedBox(
@@ -59,7 +59,7 @@ class Contact extends StatelessWidget {
                     'elelanv@gmail.com',
                     style: GoogleFonts.montserrat(
                         fontSize: 15,
-                        color: kBgColor,
+                        color: Colors.black,
                         fontWeight: FontWeight.w800),
                   ),
                   SizedBox(
@@ -69,7 +69,7 @@ class Contact extends StatelessWidget {
                     '(+94) 77 420 1749',
                     style: GoogleFonts.montserrat(
                         fontSize: 15,
-                        color: kBgColor,
+                        color: Colors.black,
                         fontWeight: FontWeight.w800),
                   ),
                 ],
