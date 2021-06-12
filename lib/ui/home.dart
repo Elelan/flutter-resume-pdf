@@ -26,13 +26,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final MenuController _controller = Get.put(MenuController());
-
+  AssetImage assetImageBg;
   @override
   void initState() {
     super.initState();
+    assetImageBg = const AssetImage('images/background.jpg');
+
     _controller.scrollController.addListener(() {
       _controller.fabStream.sink.add(_controller.scrollController.offset > 500);
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(assetImageBg, context);
   }
 
   @override
@@ -51,7 +59,7 @@ class _HomeState extends State<Home> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('images/background.jpg'), fit: BoxFit.cover)),
+                image: assetImageBg, fit: BoxFit.cover)),
         child: Column(
           children: [
             MyAppBar(),

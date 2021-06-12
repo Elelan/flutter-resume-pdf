@@ -45,13 +45,21 @@ class Contact extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Colombo, SriLanka',
-                    style: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w800),
+                  CircleAvatar(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: De
+                      ),
+                      child: Text(
+                        'Colombo, SriLanka',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    ),
                   ),
+
                   SizedBox(
                     width: size.width * 0.02,
                   ),
