@@ -9,42 +9,39 @@ class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          color: kContactBg,
-          child: SvgPicture.asset(
-            'assets/images/contact_us.svg',
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
+    return Container(
+      color: kContactBg.withOpacity(0.98),
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '\nContact',
+            style: GoogleFonts.montserrat(
+                fontSize: size.height * 0.08,
+                fontWeight: FontWeight.w100,
+                letterSpacing: 1.0),
           ),
-        ),
-        Container(
-          //color: kContactBg.withOpacity(0.4),
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
+          Text(
+            'Let\'s get in touch and build something together ;)\n\n',
+            style: GoogleFonts.montserrat(fontWeight: FontWeight.w200),
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Stack(
+            fit: StackFit.expand,
             children: [
-              Text(
-                '\nContact',
-                style: GoogleFonts.montserrat(
-                    fontSize: size.height * 0.08,
-                    fontWeight: FontWeight.w100,
-                    letterSpacing: 1.0),
+              Container(
+                color: kContactBg,
+                child: SvgPicture.asset(
+                  'assets/images/contact_us_optimized.svg',
+                  fit: BoxFit.cover,
+                  semanticsLabel: 'contact_logo',
+                  matchTextDirection: true,
+                  alignment: Alignment.center,
+                ),
               ),
-              Text(
-                'Let\'s get in touch and build something together ;)\n\n',
-                style: GoogleFonts.montserrat(fontWeight: FontWeight.w200),
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              // SvgPicture.asset(
-              //   'assets/images/contact_us.svg',
-              //   alignment: Alignment.center,
-              //   width: MediaQuery.of(context).size.width,
-              //   height: MediaQuery.of(context).size.height,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -79,8 +76,9 @@ class Contact extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ],
+
+        ],
+      ),
     );
   }
 }

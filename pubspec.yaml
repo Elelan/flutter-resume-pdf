@@ -35,6 +35,7 @@ dependencies:
   material_design_icons_flutter:
   google_fonts:
   flutter_staggered_grid_view:
+  hover_effect:
 
 dev_dependencies:
   flutter_test:
