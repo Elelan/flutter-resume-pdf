@@ -61,7 +61,7 @@ class _WebMenuItemState extends State<WebMenuItem> {
       child: AnimatedContainer(
         duration: kDefaultDuration,
         margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+        //padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(color: _borderColor(), width: 3),

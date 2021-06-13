@@ -66,10 +66,11 @@ class _HomeState extends State<Home> {
                 controller: _controller.scrollController,
                 headerSliverBuilder: (ctx, innerBoxScroll) {
                   return <Widget>[
+                    //AppBarSliver(),
                     // SliverPersistentHeader(
                     //     pinned: true,
-                    //     floating: false,
-                    //     delegate: MySliverAppBar(height: size.height * 0.1
+                    //     floating: true,
+                    //     delegate: MySliverAppBar(height: size.height * 0.12
                     //         //expandedHeight: MediaQuery.of(context).size.height * .4
                     //         )),
                     SliverList(

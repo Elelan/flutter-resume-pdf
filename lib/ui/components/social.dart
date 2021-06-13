@@ -14,12 +14,41 @@ class Social extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SocialMenuItem(iconData: FontAwesomeIcons.facebook, press: () {}),
-        SocialMenuItem(iconData: FontAwesomeIcons.linkedin, press: () {}),
-        SocialMenuItem(iconData: FontAwesomeIcons.instagram, press: () {}),
-        SocialMenuItem(iconData: FontAwesomeIcons.gitlab, press: () {}),
-        SocialMenuItem(iconData: FontAwesomeIcons.github, press: () {}),
-        SocialMenuItem(iconData: FontAwesomeIcons.google, press: () {})
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.facebook,
+          press: () {},
+          label: 'Facebook',
+        ),
+        SizedBox(width: kDefaultPadding),
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.linkedin,
+          press: () {},
+          label: 'LinkedIn',
+        ),
+        SizedBox(width: kDefaultPadding),
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.instagram,
+          press: () {},
+          label: 'Instagram',
+        ),
+        SizedBox(width: kDefaultPadding),
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.gitlab,
+          press: () {},
+          label: 'Gitlab',
+        ),
+        SizedBox(width: kDefaultPadding),
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.github,
+          press: () {},
+          label: 'Github',
+        ),
+        SizedBox(width: kDefaultPadding),
+        SocialMenuItem(
+          iconData: FontAwesomeIcons.google,
+          press: () {},
+          label: 'Google',
+        )
       ],
     );
   }
@@ -32,12 +61,14 @@ class SocialMenuItem extends StatefulWidget {
     @required this.iconData,
     this.iconColor,
     this.hoverColor,
+    this.label,
   }) : super(key: key);
 
   final VoidCallback press;
   final IconData iconData;
   final Color iconColor;
   final Color hoverColor;
+  final String label;
 
   @override
   _SocialMenuItemState createState() => _SocialMenuItemState();
@@ -59,13 +90,14 @@ class _SocialMenuItemState extends State<SocialMenuItem> {
       },
       child: AnimatedContainer(
         duration: kDefaultDuration,
-        margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+        //margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        //padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
         child: Icon(
           widget.iconData,
           color: _isHover
               ? (widget.hoverColor != null ? widget.hoverColor : _hoverColor)
               : (widget.iconColor != null ? widget.iconColor : _iconColor),
+          semanticLabel: widget?.label,
         ),
       ),
     );
