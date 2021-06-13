@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_pdf/model/contact.dart';
 
 const kPrimaryColor = Color(0xFFFF3B1D);
 const kDarkBlackColor = Color(0xFF191919);
@@ -25,10 +26,26 @@ mixin AppStyles {
   );
 }
 
+final String name = "Elelan";
+final String job = "Mobile Developer";
+final String description =
+    'A mobile full stack developer with experience building mobile and web applications';
+
+final List<ContactModel> contactItems = [
+  ContactModel(Icons.home, 'Location', 'Colombo, Srilanka'),
+  ContactModel(Icons.phone, 'Phone', '(+94) 77 420 1749'),
+  ContactModel(Icons.mail, 'Email', 'elelanv@gmail.com')
+];
 final kContactIcons = [
   Icons.home,
   Icons.phone,
   Icons.email
+];
+
+final kContactAssetPath = [
+  'assets/images/my_location.svg',
+  'assets/images/develop_app.svg',
+  'assets/images/envelope.svg',
 ];
 
 final kContactTitles = [
@@ -42,3 +59,4 @@ final kContactDetails = [
   '(+94) 77 420 1749d',
   'elelanv@gmail.com'
 ];
+

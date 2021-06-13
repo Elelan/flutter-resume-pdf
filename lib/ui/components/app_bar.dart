@@ -40,9 +40,9 @@ class MyAppBar extends StatelessWidget {
                     height: 80,
                   )),
             ),
-          if (Responsive.isDesktop(context)) WebMenu(),
-          Spacer(),
-          Social(),
+          if (!Responsive.isMobile(context)) WebMenu(),
+          if(Responsive.isDesktop(context))Spacer(),
+          if (Responsive.isDesktop(context))Social(),
         ],
       ),
     );

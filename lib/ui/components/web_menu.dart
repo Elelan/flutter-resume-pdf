@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/config/constants.dart';
 import 'package:flutter_resume_pdf/controllers/menu_controller.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WebMenu extends StatelessWidget {
   final MenuController _controller = Get.put(MenuController());
@@ -68,7 +69,7 @@ class _WebMenuItemState extends State<WebMenuItem> {
         ),
         child: Text(
           widget.text,
-          style: TextStyle(
+          style: GoogleFonts.montserrat(
             color: Colors.black,
             fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.normal,
           ),
