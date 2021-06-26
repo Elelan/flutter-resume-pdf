@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/config/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WorkCustomData extends StatelessWidget {
   final String title;
@@ -19,8 +20,16 @@ class WorkCustomData extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Text(
+          duration,
+          style: GoogleFonts.montserrat(
+            fontSize: 13.0,
+            color: kDarkBlackColor.withOpacity(0.8),
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Text(
           title,
-          style: TextStyle(
+          style: GoogleFonts.montserrat(
             fontSize: 22.0,
             color: kDarkBlackColor,
             fontWeight: FontWeight.w700,
@@ -40,14 +49,7 @@ class WorkCustomData extends StatelessWidget {
         SizedBox(
           height: 6.0,
         ),
-        Text(
-          duration,
-          style: TextStyle(
-            fontSize: 12.0,
-            color: kDarkBlackColor.withOpacity(0.5),
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+
       ],
     );
   }

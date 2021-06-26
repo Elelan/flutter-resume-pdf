@@ -9,7 +9,6 @@ import 'social.dart';
 import 'web_menu.dart';
 
 class MyAppBar extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
 
   MyAppBar({Key key}) : super(key: key);
 
@@ -18,13 +17,16 @@ class MyAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       //constraints: BoxConstraints(maxWidth: kMaxWidth),
-      padding: EdgeInsets.only(top: kDefaultPadding, right: kDefaultPadding, bottom: kDefaultPadding, left: 10),
+      padding: EdgeInsets.only(
+          top: kDefaultPadding,
+          right: kDefaultPadding,
+          bottom: kDefaultPadding,
+          left: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          if (!Responsive.isMobile(context))
-            LogoModel(),
+          if (!Responsive.isMobile(context)) LogoModel(),
           if (Responsive.isDesktop(context)) Spacer(),
           if (!Responsive.isMobile(context)) WebMenu(),
           if (Responsive.isDesktop(context)) Spacer(),
@@ -50,13 +52,10 @@ class AppBarSliver extends StatelessWidget {
       backgroundColor: Colors.transparent,
       flexibleSpace: WebMenu(),
       leading: LogoModel(),
-      actions: [
-        Social()
-      ],
+      actions: [Social()],
     );
   }
 }
-
 
 class LogoModel extends StatelessWidget {
   final MenuController _controller = Get.put(MenuController());
@@ -72,10 +71,13 @@ class LogoModel extends StatelessWidget {
       },
       child: Container(
           foregroundDecoration: BoxDecoration(
-            // color: Colors.white,
-            // backgroundBlendMode: BlendMode.saturation,
-          ),
-          child: Image.asset('assets/images/logo/logo4.png', height: size.height*0.08,)),
+              // color: Colors.white,
+              // backgroundBlendMode: BlendMode.saturation,
+              ),
+          child: Image.asset(
+            'assets/images/logo/logo4.png',
+            height: size.height * 0.08,
+          )),
     );
   }
 }

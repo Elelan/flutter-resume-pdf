@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_resume_pdf/ui/responsive_widget.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class MenuController extends GetxController {
 
+  bool isDark = false;
   RxInt _selectedIndex = 0.obs;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -108,5 +109,15 @@ class MenuController extends GetxController {
   _scrollToContact() async {
     await Scrollable.ensureVisible(_contactGlobalKey.currentContext,
         duration: const Duration(seconds: 1));
+  }
+
+  void changeTheme(bool state) {
+    if(state) {
+      Get.changeTheme(ThemeData.dark());
+    } else {
+      Get.changeTheme(ThemeData.light());
+    }
+    isDark = state;
+    update();
   }
 }

@@ -36,6 +36,7 @@ dependencies:
   google_fonts:
   flutter_staggered_grid_view:
   hover_effect:
+  animated_text_kit:
 
 dev_dependencies:
   flutter_test:

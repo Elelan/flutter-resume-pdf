@@ -73,13 +73,15 @@ class _HomeState extends State<Home> {
                     //     delegate: MySliverAppBar(height: size.height * 0.12
                     //         //expandedHeight: MediaQuery.of(context).size.height * .4
                     //         )),
-                    SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                            (BuildContext ctx2, int i) {
-                      return Column(
-                        children: [LandingPage()],
-                      );
-                    }, childCount: 1))
+                    // SliverList(
+                    //     delegate: SliverChildBuilderDelegate(
+                    //         (BuildContext ctx2, int i) {
+                    //   return Column(
+                    //     children: [
+                    //       LandingPage()
+                    //     ],
+                    //   );
+                    // }, childCount: 1))
                   ];
                 },
                 body: CustomScrollView(
@@ -110,10 +112,10 @@ class _HomeState extends State<Home> {
   }
 
   List<Widget> _slivers() => [
-        SliverToBoxAdapter(
-          key: _controller.aboutGlobalKey,
-          child: About(),
-        ),
+        // SliverToBoxAdapter(
+        //   key: _controller.aboutGlobalKey,
+        //   child: About(),
+        // ),
         SliverToBoxAdapter(
           key: _controller.timelineGlobalKey,
           child: Timeline(),

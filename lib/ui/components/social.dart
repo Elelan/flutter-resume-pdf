@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/config/constants.dart';
+import 'package:flutter_resume_pdf/controllers/menu_controller.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 import '../responsive_widget.dart';
 
@@ -48,7 +50,11 @@ class Social extends StatelessWidget {
           iconData: FontAwesomeIcons.google,
           press: () {},
           label: 'Google',
-        )
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        ThemeSwitch()
       ],
     );
   }
@@ -100,6 +106,25 @@ class _SocialMenuItemState extends State<SocialMenuItem> {
           semanticLabel: widget?.label,
         ),
       ),
+    );
+  }
+}
+
+class ThemeSwitch extends StatelessWidget {
+  final MenuController _controller = Get.put(MenuController());
+  bool _isDark = false;
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<MenuController>(
+      builder: (_) =>
+          Switch(
+              value: _controller.isDark,
+              onChanged: (val) {
+                print(val);
+                _isDark = val;
+                _controller.changeTheme(val);
+              }
+          ),
     );
   }
 }

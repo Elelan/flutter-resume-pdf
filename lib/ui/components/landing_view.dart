@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_resume_pdf/widget/shadow_text.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/constants.dart';
 import '../../controllers/menu_controller.dart';
@@ -10,7 +12,7 @@ class LandingPage extends StatelessWidget {
   final String _name = "Elelan V";
   final String _job = "I build things for the Android and web";
   final String _description =
-      'I am a freelancer from SriLanka with experience building mobile and web applications';
+      'I am a freelancer from SriLanka\nwith experience building mobile and web applications';
 
   final MenuController _controller = Get.put(MenuController());
 
@@ -38,18 +40,26 @@ class LandingPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-            child: ShadowText(
-              '$_job',
-              style: TextStyle(
-                color: kBgColor,
-                fontFamily: 'Raleway',
-                fontSize: 40,
-                height: 1.1,
-              ),
-            ),
+          AnimatedTextKit(
+            pause: Duration(seconds: 1),
+            animatedTexts: [
+              _animatedText('Android Developer'),
+              _animatedText('Flutter Developer'),
+              _animatedText('Technology enthusist'),
+            ],
           ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+          //   child: ShadowText(
+          //     '$_job',
+          //     style: TextStyle(
+          //       color: kBgColor,
+          //       fontFamily: 'Raleway',
+          //       fontSize: 40,
+          //       height: 1.1,
+          //     ),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(bottom: kDefaultPadding),
             child: SizedBox(
@@ -79,6 +89,14 @@ class LandingPage extends StatelessWidget {
           if (Responsive.isDesktop(context)) SizedBox(height: kDefaultPadding),
         ],
       ),
+    );
+  }
+
+  TypewriterAnimatedText _animatedText(String text) {
+    return TypewriterAnimatedText(
+        '$text',
+        textStyle: GoogleFonts.montserrat(fontSize: 35),
+      speed: const Duration(milliseconds: 200)
     );
   }
 }

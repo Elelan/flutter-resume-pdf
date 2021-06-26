@@ -51,7 +51,7 @@ class Timeline extends StatelessWidget {
                                   backgroundColor: Colors.pink,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Icon(FontAwesomeIcons.laptopHouse,
+                                    child: Icon(FontAwesomeIcons.dev,
                                         color: Colors.white),
                                   ),
                                 ),
