@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resume_pdf/ui/home.dart';
 import 'package:flutter_resume_pdf/widget/resume.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
           headline5: TextStyle(color: kDarkBlackColor),
         ),
       ),
-      //home: Home(),
-      home: MyHomePage(),
+      home: Home(),
+      // home: MyHomePage(),
     );
   }
 }
