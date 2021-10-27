@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_resume_pdf/ui/home.dart';
 import 'package:flutter_resume_pdf/widget/resume.dart';
 import 'package:get/get.dart';
+import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 import 'config/constants.dart';
@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
           headline5: TextStyle(color: kDarkBlackColor),
         ),
       ),
-      home: Home(),
+      //home: Home(),
+      home: MyHomePage(),
     );
   }
 }
@@ -50,6 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         body: PdfPreview(
+          initialPageFormat: PdfPageFormat.a4,
+          pdfFileName: "elelan",
+          canDebug: true,
           useActions: true,
           build: generateResume,
         ),

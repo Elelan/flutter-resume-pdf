@@ -27,25 +27,30 @@
     <link rel="icon" type="image/png" href="assets/images/profile.jpg"/>
 
     <!-- Styles -->
-<!--    <link rel="stylesheet" type="text/css" href="styles.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="styles.css">-->
 
     <title>flutter_resume_pdf</title>
     <link rel="manifest" href="manifest.json">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+    <script type="text/javascript">pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js";</script>
+
+
 </head>
 <body>
 
 <!-- Loading -->
 
-    <div class="sk-cube-grid center">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
-        <div class="sk-cube sk-cube3"></div>
-        <div class="sk-cube sk-cube4"></div>
-        <div class="sk-cube sk-cube5"></div>
-        <div class="sk-cube sk-cube6"></div>
-        <div class="sk-cube sk-cube7"></div>
-        <div class="sk-cube sk-cube8"></div>
-        <div class="sk-cube sk-cube9"></div>
+<div class="sk-cube-grid center">
+    <div class="sk-cube sk-cube1"></div>
+    <div class="sk-cube sk-cube2"></div>
+    <div class="sk-cube sk-cube3"></div>
+    <div class="sk-cube sk-cube4"></div>
+    <div class="sk-cube sk-cube5"></div>
+    <div class="sk-cube sk-cube6"></div>
+    <div class="sk-cube sk-cube7"></div>
+    <div class="sk-cube sk-cube8"></div>
+    <div class="sk-cube sk-cube9"></div>
 </div>
 
 <!-- This script installs service_worker.js to provide PWA functionality to
@@ -58,10 +63,12 @@
       });
     }
 
+
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
 <script type="text/javascript">
     pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.worker.min.js";
+
 
 </script>
 <script src="main.dart.js" type="application/javascript"></script>
