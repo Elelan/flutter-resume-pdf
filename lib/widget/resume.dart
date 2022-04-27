@@ -155,27 +155,33 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
     Language('Sinhala', 'Intermediate', 3),
   ];
 
-  final gitlab_url = 'https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png';
-  final linkedn_url = 'https://img.icons8.com/cute-clipart/64/000000/linkedin.png';
-  final twitter_url = 'https://img.icons8.com/cute-clipart/64/000000/twitter.png';
+  final gitlab_url =
+      'https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png';
+  final linkedn_url =
+      'https://img.icons8.com/cute-clipart/64/000000/linkedin.png';
+  final twitter_url =
+      'https://img.icons8.com/cute-clipart/64/000000/twitter.png';
   // final gitLabImg = await networkImage('');
   final gitLabImg = await imageFromAssetBundle('assets/images/gitlab_icon.png');
-  final linkedInImg = await imageFromAssetBundle('assets/images/linkedin_icon.png');
-  final twitterImg = await imageFromAssetBundle('assets/images/twitter_icon.png');
+  final linkedInImg =
+      await imageFromAssetBundle('assets/images/linkedin_icon.png');
+  final twitterImg =
+      await imageFromAssetBundle('assets/images/twitter_icon.png');
   //
 
   final online = [
-    OnlineInfo('/vickneshelelan', 'https://gitlab.com/vickneshelelan', gitLabImg),
+    OnlineInfo(
+        '/vickneshelelan', 'https://gitlab.com/vickneshelelan', gitLabImg),
     OnlineInfo('/elelan', 'https://www.linkedin.com/in/elelan/', linkedInImg),
     OnlineInfo('@vickneshelelan', '', twitterImg)
   ];
 
-
-  
   // final coding = await networkImage("https://img.icons8.com/pastel-glyph/64/000000/laptop-coding--v1.png");
-  final coding = pw.MemoryImage((await rootBundle.load('assets/coding.png')).buffer.asUint8List());
+  final coding = pw.MemoryImage(
+      (await rootBundle.load('assets/coding.png')).buffer.asUint8List());
   // final gaming = await networkImage('https://img.icons8.com/material-outlined/24/000000/like--v1.png');
-  final gaming = pw.MemoryImage((await rootBundle.load('assets/like.png')).buffer.asUint8List());
+  final gaming = pw.MemoryImage(
+      (await rootBundle.load('assets/like.png')).buffer.asUint8List());
   final passions = [
     OnlineInfo('Programming', '', coding),
     OnlineInfo('Gaming', '', gaming),
@@ -276,8 +282,8 @@ Future<Uint8List> generateResume(PdfPageFormat format) async {
                             width: 100,
                             height: 100,
                             decoration: pw.BoxDecoration(
-                                borderRadius: pw.BorderRadius.circular(8),
-                                //border: pw.Border.all(width: 0.5)
+                              borderRadius: pw.BorderRadius.circular(8),
+                              //border: pw.Border.all(width: 0.5)
                             ),
                             child: pw.ClipRRect(
                                 horizontalRadius: 8,
@@ -358,20 +364,16 @@ pw.Widget _buildFooter(pw.Context context) {
         ),
       ),
       pw.Link(
-        destination: "https://github.com/DavBfr/dart_pdf",
-        child: pw.Text('This resume is generated using flutter pdf',
-            style: const pw.TextStyle(
-                fontSize: 8,
-                color: PdfColors.black
-            ))
-      ),
-
+          destination: "https://github.com/DavBfr/dart_pdf",
+          child: pw.Text('This resume is generated using flutter pdf',
+              style: const pw.TextStyle(fontSize: 8, color: PdfColors.black))),
     ],
   );
 }
 
 Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
-  final bgShape = await rootBundle.loadString('assets/invoice.svg');
+  // final bgShape = await rootBundle.loadString('assets/invoice.svg');
+  final bgShape = await imageFromAssetBundle('assets/cv_bg.png');
   final bgImg = await imageFromAssetBundle('assets/images/bg.jpeg');
   format = format.applyMargin(
       left: 0.5 * PdfPageFormat.cm,
@@ -380,7 +382,6 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
       bottom: 1.0 * PdfPageFormat.cm);
   return pw.PageTheme(
     pageFormat: PdfPageFormat.a4,
-
     theme: pw.ThemeData.withFont(
       base: pw.Font.ttf(await rootBundle.load('assets/open-sans.ttf')),
       bold: pw.Font.ttf(await rootBundle.load('assets/open-sans-bold.ttf')),
@@ -392,6 +393,10 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
     buildBackground: (pw.Context context) {
       return pw.FullPage(
           ignoreMargins: true,
+          child: pw.Container(
+              decoration: pw.BoxDecoration(
+                  image:
+                      pw.DecorationImage(image: bgShape, fit: pw.BoxFit.cover)))
           // child: pw.Stack(
           //   children: [
           //     pw.Positioned(
@@ -408,7 +413,7 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
           //   ],
           // ),
           //child: pw.Container(child: pw.Image(bgImg, fit: pw.BoxFit.cover))
-      );
+          );
       //child: pw.Container(color: PdfColors.grey500));
     },
   );

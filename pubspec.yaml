@@ -28,8 +28,8 @@ dependencies:
   flutter_svg:
   open_file:
   path_provider:
-  pdf:
-  printing:
+  pdf: 3.7.4
+  printing: 5.8.0
   flutter_vector_icons:
   font_awesome_flutter:
   material_design_icons_flutter:
@@ -37,6 +37,8 @@ dependencies:
   flutter_staggered_grid_view:
   hover_effect:
   animated_text_kit:
+
+  table_calendar: ^3.0.5
 
 dev_dependencies:
   flutter_test:

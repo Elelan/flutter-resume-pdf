@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
+import 'calendar_temp.dart';
 import 'config/constants.dart';
 
 void main() {
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
           headline5: TextStyle(color: kDarkBlackColor),
         ),
       ),
-      home: Home(),
+      // home: Home(),
       // home: MyHomePage(),
+      home: TableEventsExample(),
     );
   }
 }
