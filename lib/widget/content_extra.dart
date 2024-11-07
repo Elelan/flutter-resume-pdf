@@ -4,7 +4,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ContentExtra extends pw.StatelessWidget {
-  ContentExtra({this.tagList, this.languageList, this.onlineList});
+  ContentExtra({this.tagList, this.languageList = const [], this.onlineList = const []});
 
   final tagList;
   final List<Language> languageList;

@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 class ShadowText extends StatelessWidget {
   ShadowText(this.data, {this.style}) : assert(data != null);
   final String data;
-  final TextStyle style;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ShadowText extends StatelessWidget {
               left: 5,
               child: Text(
                 data,
-                style: style.copyWith(color: Colors.black.withOpacity(0.7)),
+                style: style?.copyWith(color: Colors.black.withOpacity(0.7)),
               )),
           BackdropFilter(
             filter: ui.ImageFilter.blur(sigmaX: 2, sigmaY: 2),

@@ -9,7 +9,7 @@ import '../responsive_widget.dart';
 
 class Social extends StatelessWidget {
   const Social({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -62,19 +62,19 @@ class Social extends StatelessWidget {
 
 class SocialMenuItem extends StatefulWidget {
   const SocialMenuItem({
-    Key key,
+    Key? key,
     this.press,
-    @required this.iconData,
+    required this.iconData,
     this.iconColor,
     this.hoverColor,
     this.label,
   }) : super(key: key);
 
-  final VoidCallback press;
+  final VoidCallback? press;
   final IconData iconData;
-  final Color iconColor;
-  final Color hoverColor;
-  final String label;
+  final Color? iconColor;
+  final Color? hoverColor;
+  final String? label;
 
   @override
   _SocialMenuItemState createState() => _SocialMenuItemState();
@@ -111,11 +111,11 @@ class _SocialMenuItemState extends State<SocialMenuItem> {
 }
 
 class ThemeSwitch extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
   bool _isDark = false;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MenuController>(
+    return GetBuilder<AppMenuController>(
       builder: (_) =>
           Switch(
               value: _controller.isDark,

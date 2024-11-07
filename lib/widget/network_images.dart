@@ -9,7 +9,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 /// Load an image from an asset bundle key.
 Future<pw.ImageProvider> imageFromAssetBundle(String key,
-    [AssetBundle bundle]) async {
+    [AssetBundle? bundle]) async {
   bundle ??= rootBundle;
   final data = await bundle.load(key);
   return pw.MemoryImage(data.buffer.asUint8List());

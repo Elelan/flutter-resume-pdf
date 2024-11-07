@@ -10,7 +10,7 @@ import 'web_menu.dart';
 
 class MyAppBar extends StatelessWidget {
 
-  MyAppBar({Key key}) : super(key: key);
+  MyAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MyAppBar extends StatelessWidget {
 }
 
 class AppBarSliver extends StatelessWidget {
-  const AppBarSliver({Key key}) : super(key: key);
+  const AppBarSliver({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +58,9 @@ class AppBarSliver extends StatelessWidget {
 }
 
 class LogoModel extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
 
-  LogoModel({Key key}) : super(key: key);
+  LogoModel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

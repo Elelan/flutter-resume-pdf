@@ -5,7 +5,7 @@ import 'package:printing/printing.dart';
 
 class PdfFileCache extends PdfBaseCache {
   PdfFileCache({
-    String base,
+    String? base,
   }) : base = base ?? '.';
 
   final String base;

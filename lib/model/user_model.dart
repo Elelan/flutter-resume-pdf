@@ -7,5 +7,5 @@ class UserModel {
   String address;
 
   UserModel(
-      {this.firstName, this.lastName, this.jobTitle, this.mobile, this.email, this.address});
+      {required this.firstName, required this.lastName, required this.jobTitle, required this.mobile, required this.email, required this.address});
 }

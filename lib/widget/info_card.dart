@@ -4,22 +4,22 @@ import 'package:flutter_resume_pdf/ui/responsive_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InfoCardWidget extends StatefulWidget {
-  final String cardIcon;
-  final IconData cardIconData;
+  final String? cardIcon;
+  final IconData? cardIconData;
   final String cardTitle;
   final String cardDesc;
-  final String cardLink;
-  final double cardWidth;
-  final double cardHeight;
-  final String backImage;
-  final Widget bottomWidget;
+  final String? cardLink;
+  final double? cardWidth;
+  final double? cardHeight;
+  final String? backImage;
+  final Widget? bottomWidget;
 
   const InfoCardWidget(
-      {Key key,
+      {Key? key,
       this.cardIcon,
       this.cardIconData,
-      this.cardTitle,
-      this.cardDesc,
+      required this.cardTitle,
+      required this.cardDesc,
       this.cardLink,
       this.cardWidth,
       this.cardHeight,
@@ -74,7 +74,7 @@ class _InfoCardWidgetState extends State<InfoCardWidget> {
               children: [
                 widget.cardIcon != null
                     ? Image.asset(
-                        widget.cardIcon,
+                        widget.cardIcon!,
                         height: size.height * 0.1,
                       )
                     : Container(),
@@ -120,7 +120,7 @@ class _InfoCardWidgetState extends State<InfoCardWidget> {
               child: FittedBox(
                 fit: BoxFit.fill,
                 child: widget.backImage != null
-                    ? Image.asset(widget.backImage)
+                    ? Image.asset(widget.backImage!)
                     : Container(),
               ),
             )

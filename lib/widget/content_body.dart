@@ -40,7 +40,7 @@ class _ContentSubTitle extends pw.StatelessWidget {
 
   _ContentSubTitle(this.model);
 
-  pw.Font material;
+  late pw.Font material;
 
   @override
   pw.Widget build(pw.Context context) {
@@ -53,7 +53,7 @@ class _ContentSubTitle extends pw.StatelessWidget {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: <pw.Widget>[
               pw.Text(model.subTitle.isEmpty
-                  ? '[${model.tags.join(', ')}]'
+                  ? '[${model.tags?.join(', ')}]'
                   : model.subTitle , style: pw.TextStyle(fontSize: 10)),
               if (model.address.isNotEmpty)
                 pw.Row(

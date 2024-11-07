@@ -18,14 +18,14 @@ import 'components/web_menu.dart';
 import 'responsive_widget.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
 
   @override
   void initState() {
@@ -132,9 +132,9 @@ class _HomeState extends State<Home> {
 
   Widget _buildFab() {
     return StreamBuilder<bool>(
-      stream: _controller.fabStream.stream,
+      stream: _controller.fabStream.stream as Stream<bool>,
       builder: (_, data) {
-        final bool showFab = data.hasData && data.data;
+        final bool showFab = data.hasData && data.data == true;
         return AnimatedOpacity(
           opacity: showFab ? 1 : 0,
           duration: const Duration(milliseconds: 500),

@@ -14,9 +14,9 @@ class LandingPage extends StatelessWidget {
   final String _description =
       'I am a freelancer from SriLanka\nwith experience building mobile and web applications';
 
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
 
-  LandingPage({Key key}) : super(key: key);
+  LandingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class LandingPage extends StatelessWidget {
             child: SizedBox(
               child: Text(
                 _description,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[100],
                       fontSize: 17,
                     ),

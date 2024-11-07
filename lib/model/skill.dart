@@ -1,6 +1,6 @@
 class Skill {
   final String name;
-  Skill({this.name});
+  Skill({required this.name});
 }
 
 // ignore: non_constant_identifier_names

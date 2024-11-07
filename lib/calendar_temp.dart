@@ -61,14 +61,14 @@ class TableEventsExample extends StatefulWidget {
 }
 
 class _TableEventsExampleState extends State<TableEventsExample> {
-  ValueNotifier<List<Event>> _selectedEvents;
+  late ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
-  DateTime _focusedDay = DateTime.now();
-  DateTime _selectedDay;
-  DateTime _rangeStart;
-  DateTime _rangeEnd;
+  DateTime? _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+  DateTime? _rangeStart;
+  DateTime? _rangeEnd;
 
   @override
   void initState() {
@@ -84,7 +84,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.dispose();
   }
 
-  List<Event> _getEventsForDay(DateTime day) {
+  List<Event> _getEventsForDay(DateTime? day) {
     // Implementation example
     return kEvents[day] ?? [];
   }
@@ -112,7 +112,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     }
   }
 
-  void _onRangeSelected(DateTime start, DateTime end, DateTime focusedDay) {
+  void _onRangeSelected(DateTime? start, DateTime? end, DateTime? focusedDay) {
     setState(() {
       _selectedDay = null;
       _focusedDay = focusedDay;
@@ -142,7 +142,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
           TableCalendar<Event>(
             firstDay: kFirstDay,
             lastDay: kLastDay,
-            focusedDay: _focusedDay,
+            focusedDay: _focusedDay!,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             rangeStartDay: _rangeStart,
             rangeEndDay: _rangeEnd,

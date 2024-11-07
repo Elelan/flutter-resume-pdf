@@ -53,7 +53,7 @@ class About extends StatelessWidget {
                       ),
                       Text(
                         _desc,
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: Colors.black.withOpacity(.7),
                             fontSize: 17,
                             fontFamily: 'Raleway'),
@@ -162,7 +162,7 @@ class About extends StatelessWidget {
               ),
               Text(
                 _desc,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.black.withOpacity(.7),
                     fontSize: 17,
                     fontFamily: 'Raleway'),

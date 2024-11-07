@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
-class MenuController extends GetxController {
+class AppMenuController extends GetxController {
 
   bool isDark = false;
   RxInt _selectedIndex = 0.obs;
@@ -42,10 +40,10 @@ class MenuController extends GetxController {
       ["Home", "About Me", "Experience", "Projects", "Contact"];
 
   void openOrCloseDrawer() {
-    if (_scaffoldKey.currentState.isDrawerOpen) {
-      _scaffoldKey.currentState.openEndDrawer();
+    if (_scaffoldKey.currentState?.isDrawerOpen == true) {
+      _scaffoldKey.currentState?.openEndDrawer();
     } else {
-      _scaffoldKey.currentState.openDrawer();
+      _scaffoldKey.currentState?.openDrawer();
     }
   }
 
@@ -81,33 +79,32 @@ class MenuController extends GetxController {
   }
 
   scrollToLanding() async {
-    await Scrollable.ensureVisible(_landingGlobalKey.currentContext,
-        duration: const Duration(seconds: 2));
+    await Scrollable.ensureVisible(_landingGlobalKey.currentState!.context, duration: const Duration(seconds: 2));
   }
 
   _scrollToAbout() async {
     await Scrollable.ensureVisible(
-      _aboutGlobalKey.currentContext,
+      _aboutGlobalKey.currentState!.context,
       duration: const Duration(seconds: 1),
     );
   }
 
   _scrollToTimeline() async {
     await Scrollable.ensureVisible(
-      _timelineGlobalKey.currentContext,
+      _timelineGlobalKey.currentState!.context,
       duration: const Duration(seconds: 1),
     );
   }
 
   _scrollToProjects() async {
     await Scrollable.ensureVisible(
-      _projectGlobalKey.currentContext,
+      _projectGlobalKey.currentState!.context,
       duration: const Duration(seconds: 1),
     );
   }
 
   _scrollToContact() async {
-    await Scrollable.ensureVisible(_contactGlobalKey.currentContext,
+    await Scrollable.ensureVisible(_contactGlobalKey.currentState!.context,
         duration: const Duration(seconds: 1));
   }
 

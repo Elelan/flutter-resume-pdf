@@ -5,7 +5,7 @@ class Project {
   final String url;
   final List<String> skills;
 
-  Project({this.name, this.description, this.image, this.url, this.skills});
+  Project({required this.name, required this.description, required this.image, required this.url, required this.skills});
 }
 
 // ignore: non_constant_identifier_names

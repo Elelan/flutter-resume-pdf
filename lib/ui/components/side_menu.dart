@@ -4,7 +4,7 @@ import 'package:flutter_resume_pdf/controllers/menu_controller.dart';
 import 'package:get/get.dart';
 
 class SideMenu extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +56,10 @@ class DrawerItem extends StatelessWidget {
   final VoidCallback press;
 
   const DrawerItem({
-    Key key,
-    @required this.title,
-    @required this.isActive,
-    @required this.press,
+    Key? key,
+    required this.title,
+    required this.isActive,
+    required this.press,
   }) : super(key: key);
 
   @override

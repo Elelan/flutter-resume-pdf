@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Contact extends StatelessWidget {
-  const Contact({Key key}) : super(key: key);
+  const Contact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WebMenu extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final AppMenuController _controller = Get.put(AppMenuController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,10 @@ class WebMenu extends StatelessWidget {
 
 class WebMenuItem extends StatefulWidget {
   const WebMenuItem({
-    Key key,
-    @required this.isActive,
-    @required this.text,
-    @required this.press,
+    Key? key,
+    required this.isActive,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
   final bool isActive;

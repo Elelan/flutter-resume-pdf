@@ -27,22 +27,22 @@ class MyApp extends StatelessWidget {
           style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
         ),
         textTheme: TextTheme(
-          bodyText1: TextStyle(color: kBodyTextColor),
-          bodyText2: TextStyle(color: kBodyTextColor),
-          headline5: TextStyle(color: kDarkBlackColor),
+          bodySmall: TextStyle(color: kBodyTextColor),
+          bodyMedium: TextStyle(color: kBodyTextColor),
+          headlineSmall: TextStyle(color: kDarkBlackColor),
         ),
       ),
       // home: Home(),
-      // home: MyHomePage(),
-      home: TableEventsExample(),
+      home: MyHomePage(),
+      // home: TableEventsExample(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();

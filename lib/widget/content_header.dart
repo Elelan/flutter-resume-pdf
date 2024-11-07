@@ -1,7 +1,7 @@
 import 'package:pdf/widgets.dart' as pw;
 
 class ContentHeader extends pw.StatelessWidget {
-  ContentHeader({this.title});
+  ContentHeader({required this.title});
 
   final String title;
 
